@@ -1,0 +1,680 @@
+{
+  "paragraphs": [
+    {
+      "text": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\nval sparkSession: SparkSession \u003d SparkSession.builder.master(\"local\").getOrCreate()",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 10:31:33 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\nsparkSession: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@7fd14a86\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511428339543_456047053",
+      "id": "20171123-144219_573047957",
+      "dateCreated": "Nov 23, 2017 2:42:19 PM",
+      "dateStarted": "Nov 27, 2017 10:32:17 AM",
+      "dateFinished": "Nov 27, 2017 10:32:31 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Done",
+      "text": "//Sites\n//DeviceTypes\n//SupplyVendor\n//Creatives\n//AdSizes",
+      "user": "anonymous",
+      "dateUpdated": "Nov 24, 2017 2:49:06 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1511508604686_-666892348",
+      "id": "20171124-130004_522190842",
+      "dateCreated": "Nov 24, 2017 1:00:04 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "looseAcvtivityUDF",
+      "text": "val looseActivity: (Long, Long) \u003d\u003e Int \u003d (clicks: Long, impressions: Long) \u003d\u003e {\n    if (clicks \u003d\u003d 0 \u0026\u0026 impressions \u003c 5) 1\n    else 0\n    \n  }\nval looseActivityUDF \u003d udf(looseActivity)",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 11:33:05 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "looseActivity: (Long, Long) \u003d\u003e Int \u003d \u003cfunction2\u003e\nlooseActivityUDF: org.apache.spark.sql.expressions.UserDefinedFunction \u003d UserDefinedFunction(\u003cfunction2\u003e,IntegerType,Some(List(LongType, LongType)))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510732616372_-460926739",
+      "id": "20171115-132656_397903706",
+      "dateCreated": "Nov 15, 2017 1:26:56 PM",
+      "dateStarted": "Nov 27, 2017 11:33:05 AM",
+      "dateFinished": "Nov 27, 2017 11:33:07 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "processDataBySite",
+      "text": "def processDataBySite(dataJoinByImpressionsAndClicks: Dataset[Row]) \u003d {\n\n    val rolledUpData: Dataset[Row] \u003d dataJoinByImpressionsAndClicks\n      .groupBy(col(\"AdGroupId\"), col(\"ActivityDate\"), col(\"Site\"))\n      .agg(sum(\"MediaCost\").as(\"Cost\"), countDistinct(\"ImpressionId\").as(\"Impressions\"), count(\"ClickId\").as(\"Clicks\"))\n\n    rolledUpData.withColumn(\"LooseActivity\",\n      looseActivityUDF(rolledUpData.col(\"Clicks\"), rolledUpData.col(\"Impressions\")))\n  }",
+      "user": "anonymous",
+      "dateUpdated": "Nov 23, 2017 2:41:52 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": true,
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "processDataBySite: (dataJoinByImpressionsAndClicks: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row])org.apache.spark.sql.DataFrame\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510732526830_1839347373",
+      "id": "20171115-132526_1169254850",
+      "dateCreated": "Nov 15, 2017 1:25:26 PM",
+      "dateStarted": "Nov 23, 2017 2:41:53 PM",
+      "dateFinished": "Nov 23, 2017 2:41:54 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "processDataByDeviceType",
+      "text": " def processDataByDeviceType(dataJoinByImpressionsAndClicks: Dataset[Row]) \u003d {\n\n    val rolledUpData: Dataset[Row] \u003d dataJoinByImpressionsAndClicks\n      .groupBy(col(\"AdvertiserId\"), col(\"CampaignId\"), col(\"AdGroupId\"), col(\"DeviceType\"), col(\"ActivityDate\"))\n      .agg(countDistinct(\"ImpressionId\").as(\"Impressions\"), count(\"ClickId\").as(\"Clicks\"))\n\n    rolledUpData.withColumn(\"LooseActivity\",\n      looseActivityUDF(rolledUpData.col(\"Clicks\"), rolledUpData.col(\"Impressions\")))\n  }",
+      "user": "anonymous",
+      "dateUpdated": "Nov 23, 2017 2:42:49 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "processDataByDeviceType: (dataJoinByImpressionsAndClicks: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row])org.apache.spark.sql.DataFrame\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510732567284_-1939409492",
+      "id": "20171115-132607_575256135",
+      "dateCreated": "Nov 15, 2017 1:26:07 PM",
+      "dateStarted": "Nov 23, 2017 2:42:49 PM",
+      "dateFinished": "Nov 23, 2017 2:42:50 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "saveParquetFile",
+      "text": "def saveParquetFile(rolledUpDataframe: Dataset[Row], pathToWrite: String): Unit \u003d {\n    rolledUpDataframe.write.mode(SaveMode.Overwrite).parquet(pathToWrite)\n  }",
+      "user": "anonymous",
+      "dateUpdated": "Nov 23, 2017 2:42:55 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "saveParquetFile: (rolledUpDataframe: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row], pathToWrite: String)Unit\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510732581572_-435010645",
+      "id": "20171115-132621_1169029572",
+      "dateCreated": "Nov 15, 2017 1:26:21 PM",
+      "dateStarted": "Nov 23, 2017 2:42:55 PM",
+      "dateFinished": "Nov 23, 2017 2:42:55 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "saveSingleCSV",
+      "text": " def saveSingleCSV(rolledUpDataframe: Dataset[Row], filePath: String): Unit \u003d {\n    rolledUpDataframe.\n      coalesce(1)\n      .write.format(\"csv\")\n      .option(\"header\", \"true\")\n      .save(filePath)\n  }",
+      "user": "anonymous",
+      "dateUpdated": "Nov 23, 2017 2:43:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "saveSingleCSV: (rolledUpDataframe: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row], filePath: String)Unit\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510732765677_1331997679",
+      "id": "20171115-132925_2054452152",
+      "dateCreated": "Nov 15, 2017 1:29:25 PM",
+      "dateStarted": "Nov 23, 2017 2:43:01 PM",
+      "dateFinished": "Nov 23, 2017 2:43:01 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "processDataByCities",
+      "text": "def processDataByCities(dataJoinByImpressionsAndClicks: Dataset[Row]) \u003d {\n\n    val rolledUpData: Dataset[Row] \u003d dataJoinByImpressionsAndClicks\n      .groupBy(col(\"AdGroupId\"), col(\"City\"), col(\"Region\"), col(\"ActivityDate\"))\n      .agg(sum(\"MediaCost\").as(\"Cost\"), countDistinct(\"ImpressionId\").as(\"Impressions\"), count(\"ClickId\").as(\"Clicks\"))\n\n    rolledUpData.withColumn(\"LooseActivity\",\n      looseActivityUDF(rolledUpData.col(\"Clicks\"), rolledUpData.col(\"Impressions\")))\n  }",
+      "user": "anonymous",
+      "dateUpdated": "Nov 23, 2017 2:43:03 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "processDataByCities: (dataJoinByImpressionsAndClicks: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row])org.apache.spark.sql.DataFrame\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510740124573_-96171404",
+      "id": "20171115-153204_485127450",
+      "dateCreated": "Nov 15, 2017 3:32:04 PM",
+      "dateStarted": "Nov 23, 2017 2:43:03 PM",
+      "dateFinished": "Nov 23, 2017 2:43:03 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "processDataBySizes",
+      "text": "def processDataBySizes(dataJoinByImpressionsAndClicks: Dataset[Row]) \u003d {\n\n    val rolledUpData: Dataset[Row] \u003d dataJoinByImpressionsAndClicks\n      .groupBy(col(\"AdGroupId\"), col(\"AdFormat\"), col(\"ActivityDate\"))\n      .agg(sum(\"MediaCost\").as(\"Cost\"), countDistinct(\"ImpressionId\").as(\"Impressions\"), count(\"ClickId\").as(\"Clicks\"))\n\n    val aggregatedDatasetForSizes: Dataset[Row] \u003d rolledUpData\n      .groupBy(rolledUpData.col(\"AdGroupId\"),\n        rolledUpData.col(\"AdFormat\"),\n        rolledUpData.col(\"ActivityDate\"))\n      .agg(sum(rolledUpData.col(\"Cost\")).as(\"Cost\"),\n        sum(rolledUpData.col(\"Impressions\")).as(\"Impressions\"),\n        sum(rolledUpData.col(\"Clicks\")).as(\"Clicks\"))\n    \n    val updatedAggregateBySize \u003d rolledUpData.withColumnRenamed(\"AdFormat\", \"Size\")\n\n    updatedAggregateBySize.withColumn(\"LooseActivity\",\n      looseActivityUDF(updatedAggregateBySize.col(\"Clicks\"), updatedAggregateBySize.col(\"Impressions\")))\n  }",
+      "user": "anonymous",
+      "dateUpdated": "Nov 23, 2017 2:43:11 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "processDataBySizes: (dataJoinByImpressionsAndClicks: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row])org.apache.spark.sql.DataFrame\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510747306982_641259179",
+      "id": "20171115-173146_1701741020",
+      "dateCreated": "Nov 15, 2017 5:31:46 PM",
+      "dateStarted": "Nov 23, 2017 2:43:11 PM",
+      "dateFinished": "Nov 23, 2017 2:43:11 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "processDataBySiteSQL",
+      "text": "def processDataBySiteSQL(runDate: String): Dataset[Row] \u003d {\n    var query \u003d s\"\"\"SELECT AdGroupId as AdGroupID,\n                        Site,\n                        ActivityDate as Date,\n                        COUNT(DISTINCT ImpressionId) as Impressions,\n                        COUNT(ClickId) as Clicks,\n                        SUM(MediaCost) as Cost,\n                        Site as Base_Site\n                    FROM ActivityTable\n                     WHERE ActivityDate \u003d TO_DATE(CAST(UNIX_TIMESTAMP(\u0027${runDate}\u0027, \u0027yyyy/MM/dd\u0027) AS TIMESTAMP))\n                    GROUP BY\n                        AdGroupID,\n                        Date,\n                        Site \"\"\"\n                        \n    val processedSiteData \u003d sparkSession.sql(query)\n    processedSiteData.withColumn(\"LooseActivity\",\n      looseActivityUDF(processedSiteData.col(\"Clicks\"), processedSiteData.col(\"Impressions\")))\n}",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 11:33:19 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "processDataBySiteSQL: (runDate: String)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510733769468_-699403182",
+      "id": "20171115-134609_25508119",
+      "dateCreated": "Nov 15, 2017 1:46:09 PM",
+      "dateStarted": "Nov 27, 2017 11:33:19 AM",
+      "dateFinished": "Nov 27, 2017 11:33:19 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "processDataByDeviceTypeSQL",
+      "text": "def processDataByDeviceTypeSQL(runDate:String): Dataset[Row] \u003d {\n    var query \u003ds\"\"\"SELECT AdvertiserId as advertiser_id,\n                    CampaignId as campaign_id,\n                    AdGroupId as adgroup_id,\n                    DeviceType as device_type,\n                    ActivityDate as date,\n                    COUNT(DISTINCT ImpressionId) as impressions,\n                    COUNT(ClickId) as clicks\n                FROM ActivityTable\n                WHERE ActivityDate \u003d TO_DATE(CAST(UNIX_TIMESTAMP(\u0027${runDate}\u0027, \u0027yyyy/MM/dd\u0027) AS TIMESTAMP))\n                GROUP BY\n                    advertiser_id,\n                    campaign_id,\n                    adgroup_id,\n                    device_type,\n                    date\"\"\"\n                    \n    val processedDeviceTypeData \u003d sparkSession.sql(query)\n    processedDeviceTypeData.withColumn(\"LooseActivity\",\n      looseActivityUDF(processedDeviceTypeData.col(\"Clicks\"), processedDeviceTypeData.col(\"Impressions\")))\n}",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 10:35:07 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "processDataByDeviceTypeSQL: (runDate: String)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510732776301_1008069753",
+      "id": "20171115-132936_756270868",
+      "dateCreated": "Nov 15, 2017 1:29:36 PM",
+      "dateStarted": "Nov 23, 2017 2:42:52 PM",
+      "dateFinished": "Nov 23, 2017 2:42:53 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "processDataBySizesSQL",
+      "text": "def processDataBySizesSQL(runDate:String): Dataset[Row] \u003d {\n    var query \u003d  s\"\"\"SELECT AdGroupId as AdGroupID,\n                    AdFormat as Size,\n                    ActivityDate as Date,\n                    COUNT(DISTINCT ImpressionId) as Impressions,\n                    COUNT(ClickId) as Clicks,\n                    SUM(MediaCost) as Cost\n                    FROM ActivityTable\n                     WHERE ActivityDate \u003d TO_DATE(CAST(UNIX_TIMESTAMP(\u0027${runDate}\u0027, \u0027yyyy/MM/dd\u0027) AS TIMESTAMP))\n                    GROUP BY\n                        AdGroupId,\n                        Size,\n                        Date\"\"\"\n                    \n    val processedsizesData \u003d sparkSession.sql(query)\n    processedsizesData.withColumn(\"LooseActivity\",\n      looseActivityUDF(processedsizesData.col(\"Clicks\"), processedsizesData.col(\"Impressions\")))\n}",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 10:35:43 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "processDataBySizesSQL: (runDate: String)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510747617052_-1749128253",
+      "id": "20171115-173657_852093576",
+      "dateCreated": "Nov 15, 2017 5:36:57 PM",
+      "dateStarted": "Nov 23, 2017 2:43:14 PM",
+      "dateFinished": "Nov 23, 2017 2:43:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "processDataByCreativesSQL",
+      "text": "def processDataByCreativesSQL(runDate:String): Dataset[Row] \u003d {\n    var query \u003d s\"\"\"SELECT AdGroupId as adgroup_id,\n                    CreativeId as creative_id,\n                    TtdCreativeId, tp_creative_id,\n                    ActivityDate as date,\n                    COUNT(DISTINCT ImpressionId) as impressions,\n                    COUNT(ClickId) as clicks,\n                    SUM(MediaCost) as cost,\n                    0 as tp_creative_source\n                    FROM ActivityTable\n                     WHERE ActivityDate \u003d TO_DATE(CAST(UNIX_TIMESTAMP(\u0027${runDate}\u0027, \u0027yyyy/MM/dd\u0027) AS TIMESTAMP))\n                    GROUP BY\n                        AdGroupId,\n                        creative_id,\n                        tp_creative_id,\n                        date\"\"\"\n                    \n    val processedCitiesData \u003d sparkSession.sql(query)\n    processedCitiesData.withColumn(\"LooseActivity\",\n      looseActivityUDF(processedCitiesData.col(\"Clicks\"), processedCitiesData.col(\"Impressions\")))\n}",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 10:35:52 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510748708045_1441360103",
+      "id": "20171115-175508_577279762",
+      "dateCreated": "Nov 15, 2017 5:55:08 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "processDataByCitiesSQL",
+      "text": "def processDataByCitiesSQL(runDate:String): Dataset[Row] \u003d {\n    var query \u003d s\"\"\"SELECT AdGroupId, \n                    City,\n                    Region,\n                    ActivityDate, \n                    SUM(MediaCost) as Cost, \n                    COUNT(DISTINCT ImpressionId) as Impressions, \n                    COUNT(ClickId) as Clicks \n                    FROM temp \n                     WHERE ActivityDate \u003d TO_DATE(CAST(UNIX_TIMESTAMP(\u0027${runDate}\u0027, \u0027yyyy/MM/dd\u0027) AS TIMESTAMP))\n                    GROUP BY \n                        AdGroupId, \n                        City,\n                        Region,\n                        ActivityDate\"\"\"\n                    \n    val processedCitiesData \u003d sparkSession.sql(query)\n    processedCitiesData.withColumn(\"LooseActivity\",\n      looseActivityUDF(processedCitiesData.col(\"Clicks\"), processedCitiesData.col(\"Impressions\")))\n}",
+      "user": "anonymous",
+      "dateUpdated": "Nov 23, 2017 3:54:15 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "processDataByCitiesSQL: (runDate: String)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510746782136_722490459",
+      "id": "20171115-172302_419924205",
+      "dateCreated": "Nov 15, 2017 5:23:02 PM",
+      "dateStarted": "Nov 23, 2017 3:54:15 PM",
+      "dateFinished": "Nov 23, 2017 3:54:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "processDataBySupplyVendorSQL",
+      "text": "def processDataBySupplyVendorSQL(runDate:String): Dataset[Row] \u003d {\n    var query \u003d s\"\"\"SELECT AdGroupId as adgroup_id,\n                    SupplyVendor as supply_vendor,\n                    AdFormat as ad_size,\n                    ActivityDate as date,\n                    COUNT(DISTINCT ImpressionId) as impressions,\n                    COUNT(ClickId) as clicks\n                    FROM ActivityTable\n                     WHERE ActivityDate \u003d TO_DATE(CAST(UNIX_TIMESTAMP(\u0027${runDate}\u0027, \u0027yyyy/MM/dd\u0027) AS TIMESTAMP))\n                    GROUP BY\n                        adgroup_id,\n                        supply_vendor,\n                        ad_size,\n                        date\"\"\"\n                        \n    val processedCitiesData \u003d sparkSession.sql(query)\n    processedCitiesData.withColumn(\"LooseActivity\",\n      looseActivityUDF(processedCitiesData.col(\"Clicks\"), processedCitiesData.col(\"Impressions\")))\n}",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 10:36:11 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "processDataBySupplyVendorSQL: (runDate: String)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511507711370_646367851",
+      "id": "20171124-124511_1631007576",
+      "dateCreated": "Nov 24, 2017 12:45:11 PM",
+      "dateStarted": "Nov 24, 2017 12:46:35 PM",
+      "dateFinished": "Nov 24, 2017 12:46:35 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "getCupVersionsFromDB",
+      "text": "def getCupVersionsFromDB: Dataset[Row] \u003d {\n   sparkSession.read\n      .format(\"jdbc\")\n      .option(\"url\", \"jdbc:mysql://brandcdn-dev.cgy3zqnvq7mi.us-west-1.rds.amazonaws.com:3306/brandcdn_dev_weekly\")\n      .option(\"dbtable\", \"brandcdn_dev_monthly.cup_versions\")\n      .option(\"user\", \"frequence_admin\")\n      .option(\"password\", \"DrPF#9sJ6ZkTn\")\n      .option(\"driver\", \"com.mysql.jdbc.Driver\")\n      .load()\n}",
+      "user": "anonymous",
+      "dateUpdated": "Nov 23, 2017 5:21:17 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1511432655009_49879144",
+      "id": "20171123-155415_1380073093",
+      "dateCreated": "Nov 23, 2017 3:54:15 PM",
+      "dateStarted": "Nov 23, 2017 5:21:17 PM",
+      "dateFinished": "Nov 23, 2017 5:21:17 PM",
+      "status": "ERROR",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "cityUDF",
+      "text": "val updateFunc: String \u003d\u003e String \u003d (cityData: String) \u003d\u003e {\n    if(cityData \u003d\u003d null || cityData \u003d\u003d \"\") \"All other cities\"\n    else cityData\n}\n\nval cityUpdateUDF \u003d udf(updateFunc)",
+      "user": "anonymous",
+      "dateUpdated": "Nov 23, 2017 5:21:47 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "updateFunc: String \u003d\u003e String \u003d \u003cfunction1\u003e\ncityUpdateUDF: org.apache.spark.sql.expressions.UserDefinedFunction \u003d UserDefinedFunction(\u003cfunction1\u003e,StringType,Some(List(StringType)))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511432702974_1705145533",
+      "id": "20171123-155502_1225954613",
+      "dateCreated": "Nov 23, 2017 3:55:02 PM",
+      "dateStarted": "Nov 23, 2017 5:21:43 PM",
+      "dateFinished": "Nov 23, 2017 5:21:45 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "regionUDF",
+      "text": "val regionUpdateFunc: String \u003d\u003e String \u003d (cityData: String) \u003d\u003e {\n    if(cityData \u003d\u003d null || cityData \u003d\u003d \"\") \"All other regions\"\n    else cityData\n}\nval regionUpdatedUDF \u003d udf(regionUpdateFunc)",
+      "user": "anonymous",
+      "dateUpdated": "Nov 23, 2017 7:41:23 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "updateFunc: String \u003d\u003e String \u003d \u003cfunction1\u003e\ncityUpdateUDF: org.apache.spark.sql.expressions.UserDefinedFunction \u003d UserDefinedFunction(\u003cfunction1\u003e,StringType,Some(List(StringType)))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511437903914_1219235555",
+      "id": "20171123-172143_2120263039",
+      "dateCreated": "Nov 23, 2017 5:21:43 PM",
+      "dateStarted": "Nov 23, 2017 5:27:47 PM",
+      "dateFinished": "Nov 23, 2017 5:27:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1511438267213_-459117413",
+      "id": "20171123-172747_1413144715",
+      "dateCreated": "Nov 23, 2017 5:27:47 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "FrequenceFunctions",
+  "id": "2CYFSTAQK",
+  "angularObjects": {
+    "2D1YAXATV:shared_process": [],
+    "2CX4TXCM1:shared_process": [],
+    "2CX389Z42:shared_process": [],
+    "2CZVA8PUW:shared_process": [],
+    "2CXMJC9HP:shared_process": [],
+    "2CXR7NPBX:shared_process": [],
+    "2CXBXEKQG:shared_process": [],
+    "2D19VVURR:shared_process": [],
+    "2CYNK7W8U:shared_process": [],
+    "2CZ5NA4Y1:shared_process": [],
+    "2D1B51PD7:shared_process": [],
+    "2CY4CU5NH:shared_process": [],
+    "2CZ31ZF1N:shared_process": [],
+    "2D1D9C6XW:shared_process": [],
+    "2D1U9N7AK:shared_process": [],
+    "2CY1E8RTN:shared_process": [],
+    "2D1ZVYZHD:shared_process": [],
+    "2CYFJX59H:shared_process": [],
+    "2D1ZN9DCM:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

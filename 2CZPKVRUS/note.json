@@ -1,0 +1,43 @@
+{
+  "paragraphs": [
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1511762239735_1645630599",
+      "id": "20171127-112719_1352134346",
+      "dateCreated": "Nov 27, 2017 11:27:19 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "BQ",
+  "id": "2CZPKVRUS",
+  "angularObjects": {
+    "2D1YAXATV:shared_process": [],
+    "2CX4TXCM1:shared_process": [],
+    "2CX389Z42:shared_process": [],
+    "2CZVA8PUW:shared_process": [],
+    "2CXMJC9HP:shared_process": [],
+    "2CXR7NPBX:shared_process": [],
+    "2CXBXEKQG:shared_process": [],
+    "2D19VVURR:shared_process": [],
+    "2CYNK7W8U:shared_process": [],
+    "2CZ5NA4Y1:shared_process": [],
+    "2CY4CU5NH:shared_process": [],
+    "2D1B51PD7:shared_process": [],
+    "2CZ31ZF1N:shared_process": [],
+    "2D1D9C6XW:shared_process": [],
+    "2D1U9N7AK:shared_process": [],
+    "2CY1E8RTN:shared_process": [],
+    "2D1ZVYZHD:shared_process": [],
+    "2CYFJX59H:shared_process": [],
+    "2D1ZN9DCM:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

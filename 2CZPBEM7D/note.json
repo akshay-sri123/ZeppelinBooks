@@ -1,0 +1,78 @@
+{
+  "paragraphs": [
+    {
+      "text": "print(\"Hello World\")",
+      "user": "anonymous",
+      "dateUpdated": "Nov 8, 2017 4:00:48 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.NullPointerException\n\tat org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:38)\n\tat org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:33)\n\tat org.apache.zeppelin.spark.SparkInterpreter.createSparkContext_2(SparkInterpreter.java:398)\n\tat org.apache.zeppelin.spark.SparkInterpreter.createSparkContext(SparkInterpreter.java:387)\n\tat org.apache.zeppelin.spark.SparkInterpreter.getSparkContext(SparkInterpreter.java:146)\n\tat org.apache.zeppelin.spark.SparkInterpreter.open(SparkInterpreter.java:843)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:70)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:491)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:175)\n\tat org.apache.zeppelin.scheduler.FIFOScheduler$1.run(FIFOScheduler.java:139)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510137037727_-1888210316",
+      "id": "20171108-160037_882372847",
+      "dateCreated": "Nov 8, 2017 4:00:37 PM",
+      "dateStarted": "Nov 8, 2017 4:00:48 PM",
+      "dateFinished": "Nov 8, 2017 4:00:52 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510137048966_-353816378",
+      "id": "20171108-160048_1756975012",
+      "dateCreated": "Nov 8, 2017 4:00:48 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "~Trash/Untitled Note 1",
+  "id": "2CZPBEM7D",
+  "angularObjects": {
+    "2D11AVQAD:shared_process": [],
+    "2CY4RN2H5:shared_process": [],
+    "2CX7Q1Q1T:shared_process": [],
+    "2CX1P3H9Z:shared_process": [],
+    "2CZU2NA4S:shared_process": [],
+    "2CWU61A4R:shared_process": [],
+    "2D11EX7UT:shared_process": [],
+    "2CWQC1CB2:shared_process": [],
+    "2CZZGVVZ7:shared_process": [],
+    "2CZUJ8EVB:shared_process": [],
+    "2CYB6BDJG:shared_process": [],
+    "2CZXKKYFJ:shared_process": [],
+    "2CWYCYATT:shared_process": [],
+    "2CX2KKQ3J:shared_process": [],
+    "2D1D579ZH:shared_process": [],
+    "2CZTBGE9V:shared_process": [],
+    "2CYEEX1T3:shared_process": [],
+    "2CZ26EWF7:shared_process": [],
+    "2CXT9CVZ1:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

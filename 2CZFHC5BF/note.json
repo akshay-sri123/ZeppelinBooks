@@ -1,0 +1,88 @@
+{
+  "paragraphs": [
+    {
+      "text": "%dep\nz.addRepo(\"Spark Packages Repo\").url(\"http://dl.bintray.com/spark-packages/maven\")\nz.load(\"com.esri.geometry:esri-geometry-api:1.2.1\")\nz.load(\"harsha2010:magellan:1.0.3-s_2.10\")",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 5:05:55 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "res0: org.apache.zeppelin.dep.Dependency \u003d org.apache.zeppelin.dep.Dependency@1f270221\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511782517038_-452356865",
+      "id": "20171127-170517_1785922683",
+      "dateCreated": "Nov 27, 2017 5:05:17 PM",
+      "dateStarted": "Nov 27, 2017 5:05:55 PM",
+      "dateFinished": "Nov 27, 2017 5:06:21 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 5:06:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1511782519563_152083657",
+      "id": "20171127-170519_1630478722",
+      "dateCreated": "Nov 27, 2017 5:05:19 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "GeoFreq",
+  "id": "2CZFHC5BF",
+  "angularObjects": {
+    "2D1YAXATV:shared_process": [],
+    "2CX4TXCM1:shared_process": [],
+    "2CX389Z42:shared_process": [],
+    "2CZVA8PUW:shared_process": [],
+    "2CXMJC9HP:shared_process": [],
+    "2CXR7NPBX:shared_process": [],
+    "2CXBXEKQG:shared_process": [],
+    "2D19VVURR:shared_process": [],
+    "2CYNK7W8U:shared_process": [],
+    "2CZ5NA4Y1:shared_process": [],
+    "2D1B51PD7:shared_process": [],
+    "2CY4CU5NH:shared_process": [],
+    "2CZ31ZF1N:shared_process": [],
+    "2D1D9C6XW:shared_process": [],
+    "2D1U9N7AK:shared_process": [],
+    "2CY1E8RTN:shared_process": [],
+    "2D1ZVYZHD:shared_process": [],
+    "2CYFJX59H:shared_process": [],
+    "2D1ZN9DCM:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

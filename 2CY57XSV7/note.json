@@ -1,0 +1,298 @@
+{
+  "paragraphs": [
+    {
+      "text": "import MySQLdb\nimport csv\nimport boto3\n",
+      "user": "anonymous",
+      "dateUpdated": "Nov 13, 2017 7:56:45 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510570547606_-1068262810",
+      "id": "20171113-162547_1861631913",
+      "dateCreated": "Nov 13, 2017 4:25:47 PM",
+      "dateStarted": "Nov 13, 2017 7:56:45 PM",
+      "dateFinished": "Nov 13, 2017 7:56:45 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "mydb \u003d MySQLdb.connect(host\u003d\u0027localhost\u0027,\n    user\u003d\u0027root\u0027,\n    passwd\u003d\u0027root\u0027,\n    db\u003d\u0027test\u0027)",
+      "user": "anonymous",
+      "dateUpdated": "Nov 13, 2017 4:55:30 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510570560865_-843923553",
+      "id": "20171113-162600_242840865",
+      "dateCreated": "Nov 13, 2017 4:26:00 PM",
+      "dateStarted": "Nov 13, 2017 4:55:30 PM",
+      "dateFinished": "Nov 13, 2017 4:55:30 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "cursor \u003d mydb.cursor()",
+      "user": "anonymous",
+      "dateUpdated": "Nov 13, 2017 4:55:32 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510571169307_1564878752",
+      "id": "20171113-163609_1044185629",
+      "dateCreated": "Nov 13, 2017 4:36:09 PM",
+      "dateStarted": "Nov 13, 2017 4:55:32 PM",
+      "dateFinished": "Nov 13, 2017 4:55:32 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "csv_data \u003d csv.reader(file(\u0027/home/zimetrics/Output/CSV/BigFile/DeviceType/part-00000-89724a90-8fb8-4e80-aff1-e3e9e916328b.csv\u0027))\nnext(csv_data, None)\n# print (csv_data)\n\nfor row in csv_data:\n    print (row)\n    ",
+      "user": "anonymous",
+      "dateUpdated": "Nov 13, 2017 6:15:55 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510571193690_-139327368",
+      "id": "20171113-163633_513971252",
+      "dateCreated": "Nov 13, 2017 4:36:33 PM",
+      "dateStarted": "Nov 13, 2017 6:15:55 PM",
+      "dateFinished": "Nov 13, 2017 6:15:57 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "csv_data \u003d csv.reader(file(\u0027/home/zimetrics/Output/CSV/BigFile/DeviceType/part-00000-89724a90-8fb8-4e80-aff1-e3e9e916328b.csv\u0027))\nnext(csv_data, None)\n\nfor row in csv_data:\n    # print(row[4])\n    test_date \u003d datetime.strptime(row[4],\"%Y-%m-%d\")\n    proper_date \u003d test_date.date()\n    print type(proper_date)",
+      "user": "anonymous",
+      "dateUpdated": "Nov 13, 2017 7:18:20 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510577064297_2043500853",
+      "id": "20171113-181424_1073720148",
+      "dateCreated": "Nov 13, 2017 6:14:24 PM",
+      "dateStarted": "Nov 13, 2017 7:18:20 PM",
+      "dateFinished": "Nov 13, 2017 7:18:22 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "print (datetime.strptime(\u00272017-10-01\u0027,\"%Y-%m-%d\"), \"%Y-%m-%d\")\n\ntest_date \u003d datetime.strptime(\u00272017-10-01\u0027,\"%Y-%m-%d\")\nproper_date \u003d test_date.date()\n\nprint type(proper_date)",
+      "user": "anonymous",
+      "dateUpdated": "Nov 13, 2017 7:17:31 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510578108482_2105913374",
+      "id": "20171113-183148_1118286818",
+      "dateCreated": "Nov 13, 2017 6:31:48 PM",
+      "dateStarted": "Nov 13, 2017 7:17:31 PM",
+      "dateFinished": "Nov 13, 2017 7:17:31 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import datetime\nfrom datetime import datetime\nimport MySQLdb\nimport csv\n\nmydb \u003d MySQLdb.connect(host\u003d\u0027localhost\u0027,\n    user\u003d\u0027root\u0027,\n    passwd\u003d\u0027root\u0027,\n    db\u003d\u0027test\u0027)\n\ncursor \u003d mydb.cursor()\n\ncsv_data \u003d csv.reader(file(\u0027/home/zimetrics/Output/CSV/BigFile/DeviceType/part-00000-89724a90-8fb8-4e80-aff1-e3e9e916328b.csv\u0027))\nnext(csv_data, None)\n\nfor row in csv_data:\n    test_date \u003d datetime.strptime(row[4],\"%Y-%m-%d\")\n    proper_date \u003d test_date.date()\n    data \u003d (str(row[0]), str(row[1]), str(row[2]), str(row[3]), proper_date, int(row[5]), int(row[6]), int(row[7]), )\n    cursor.execute(\u0027INSERT INTO testCSV5(AdvertiserId, CampaignId, AdGroupId, DeviceType, ActivityDate, Impressions, Clicks, LooseActivity )\u0027 \\\n          \u0027VALUES(%s,%s,%s,%s,%s,%s,%s,%s)\u0027, \n          data)\nmydb.commit()\ncursor.close()\nprint \"Done\"",
+      "user": "anonymous",
+      "dateUpdated": "Nov 13, 2017 7:20:04 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510571205354_700225380",
+      "id": "20171113-163645_483549585",
+      "dateCreated": "Nov 13, 2017 4:36:45 PM",
+      "dateStarted": "Nov 13, 2017 7:18:41 PM",
+      "dateFinished": "Nov 13, 2017 7:18:43 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import datetime\nfrom datetime import datetime\nimport MySQLdb\nimport csv\n\nmydb \u003d MySQLdb.connect(host\u003d\u0027localhost\u0027,\n    user\u003d\u0027root\u0027,\n    passwd\u003d\u0027root\u0027,\n    db\u003d\u0027test\u0027)\n\ncursor \u003d mydb.cursor()\n\nquery \u003d \u0027LOAD DATA LOCAL INFILE \"/home/zimetrics/Output/CSV/BigFile/DeviceType/part-00000-89724a90-8fb8-4e80-aff1-e3e9e916328b.csv\" into table testCSV5 FIELDS TERMINATED BY \",\" LINES TERMINATED BY \"\\n\" IGNORE 1 LINES\u0027\ncursor.execute(query)\nmydb.commit()\ncursor.close()\nprint \"Done\"",
+      "user": "anonymous",
+      "dateUpdated": "Nov 13, 2017 7:46:35 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510577062489_978515898",
+      "id": "20171113-181422_1757079480",
+      "dateCreated": "Nov 13, 2017 6:14:22 PM",
+      "dateStarted": "Nov 13, 2017 7:46:35 PM",
+      "dateFinished": "Nov 13, 2017 7:46:35 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "SUFFIXES \u003d {1000: [\u0027KB\u0027, \u0027MB\u0027, \u0027GB\u0027, \u0027TB\u0027, \u0027PB\u0027, \u0027EB\u0027, \u0027ZB\u0027, \u0027YB\u0027],\n            1024: [\u0027KiB\u0027, \u0027MiB\u0027, \u0027GiB\u0027, \u0027TiB\u0027, \u0027PiB\u0027, \u0027EiB\u0027, \u0027ZiB\u0027, \u0027YiB\u0027]}\n\n\ndef approximate_size(size, a_kilobyte_is_1024_bytes\u003dTrue):\n    if size \u003c 0:\n        raise ValueError(\u0027number must be non-negative\u0027)\n\n    multiple \u003d 1024 if a_kilobyte_is_1024_bytes else 1000\n    for suffix in SUFFIXES[multiple]:\n        size /\u003d multiple\n        if size \u003c multiple:\n            return \u0027{0:.1f} {1}\u0027.format(size, suffix)\n\n    raise ValueError(\u0027number too large\u0027)\n\n\nif __name__ \u003d\u003d \u0027__main__\u0027:\n    print(approximate_size(1000000000000, False))\n    print(approximate_size(1000000000000))",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 2:41:50 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1510571330853_-1320142524",
+      "id": "20171113-163850_401330498",
+      "dateCreated": "Nov 13, 2017 4:38:50 PM",
+      "dateStarted": "Nov 27, 2017 2:41:50 PM",
+      "dateFinished": "Nov 27, 2017 2:41:51 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1511773235248_-609312735",
+      "id": "20171127-143035_1472456264",
+      "dateCreated": "Nov 27, 2017 2:30:35 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "PythonNotebook",
+  "id": "2CY57XSV7",
+  "angularObjects": {
+    "2D1YAXATV:shared_process": [],
+    "2CX4TXCM1:shared_process": [],
+    "2CX389Z42:shared_process": [],
+    "2CZVA8PUW:shared_process": [],
+    "2CXMJC9HP:shared_process": [],
+    "2CXR7NPBX:shared_process": [],
+    "2CXBXEKQG:shared_process": [],
+    "2D19VVURR:shared_process": [],
+    "2CYNK7W8U:shared_process": [],
+    "2CZ5NA4Y1:shared_process": [],
+    "2D1B51PD7:shared_process": [],
+    "2CY4CU5NH:shared_process": [],
+    "2CZ31ZF1N:shared_process": [],
+    "2D1D9C6XW:shared_process": [],
+    "2D1U9N7AK:shared_process": [],
+    "2CY1E8RTN:shared_process": [],
+    "2D1ZVYZHD:shared_process": [],
+    "2CYFJX59H:shared_process": [],
+    "2D1ZN9DCM:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

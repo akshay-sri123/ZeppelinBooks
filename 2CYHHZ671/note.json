@@ -1,0 +1,453 @@
+{
+  "paragraphs": [
+    {
+      "text": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\n val sparkSession: SparkSession \u003d {\n    SparkSession.builder.appName(\"FrequnceTests\").getOrCreate\n  }",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 12:50:55 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\nsparkSession: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@7fd14a86\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510680569916_545599096",
+      "id": "20171114-225929_217128280",
+      "dateCreated": "Nov 14, 2017 10:59:29 PM",
+      "dateStarted": "Nov 27, 2017 12:50:55 PM",
+      "dateFinished": "Nov 27, 2017 12:50:57 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": " \n \n val looseActivity: (Long, Long) \u003d\u003e Int \u003d (clicks: Long, impressions: Long) \u003d\u003e {\n    if (clicks \u003d\u003d 0 \u0026\u0026 impressions \u003c 5) 1\n    else 0\n  }\n  val looseActivityUDF \u003d udf(looseActivity)\n \ndef processDataBySite(dataJoinByImpressionsAndClicks: Dataset[Row]) \u003d {\n\n    val rolledUpData: Dataset[Row] \u003d dataJoinByImpressionsAndClicks\n      .groupBy(col(\"AdGroupId\"), col(\"ActivityDate\"), col(\"Site\"))\n      .agg(sum(\"MediaCost\").as(\"Cost\"), countDistinct(\"ImpressionId\").as(\"Impressions\"), count(\"ClickId\").as(\"Clicks\"))\n\n    val aggregatedDatasetForSite: Dataset[Row] \u003d rolledUpData\n      .groupBy(rolledUpData.col(\"AdGroupId\"),\n        rolledUpData.col(\"ActivityDate\"),\n        rolledUpData.col(\"Site\"))\n      .agg(sum(rolledUpData.col(\"Cost\")).as(\"Cost\"),\n        sum(rolledUpData.col(\"Impressions\")).as(\"Impressions\"),\n        sum(rolledUpData.col(\"Clicks\")).as(\"Clicks\"))\n\n\n    aggregatedDatasetForSite.withColumn(\"LooseActivity\",\n      looseActivityUDF(aggregatedDatasetForSite.col(\"Clicks\"), aggregatedDatasetForSite.col(\"Impressions\")))\n  }\n\n   def processDataByDeviceType(dataJoinByImpressionsAndClicks: Dataset[Row]) \u003d {\n\n    val rolledUpData: Dataset[Row] \u003d dataJoinByImpressionsAndClicks\n      .groupBy(col(\"AdvertiserId\"), col(\"CampaignId\"), col(\"AdGroupId\"), col(\"DeviceType\"), col(\"ActivityDate\"))\n      .agg(countDistinct(\"ImpressionId\").as(\"Impressions\"), count(\"ClickId\").as(\"Clicks\"))\n\n    val aggregatedDatasetForSite: Dataset[Row] \u003d rolledUpData\n      .groupBy(rolledUpData.col(\"AdvertiserId\"),\n        rolledUpData.col(\"CampaignId\"),\n        rolledUpData.col(\"AdGroupId\"),\n        rolledUpData.col(\"DeviceType\"),\n        rolledUpData.col(\"ActivityDate\"))\n      .agg(sum(rolledUpData.col(\"Impressions\")).as(\"Impressions\"),\n        sum(rolledUpData.col(\"Clicks\")).as(\"Clicks\"))\n\n    aggregatedDatasetForSite.withColumn(\"LooseActivity\",\n      looseActivityUDF(aggregatedDatasetForSite.col(\"Clicks\"), aggregatedDatasetForSite.col(\"Impressions\")))\n  }\n  \n  def saveParquetFile(rolledUpDataframe: Dataset[Row], pathToWrite: String): Unit \u003d {\n    rolledUpDataframe.write.mode(SaveMode.Overwrite).parquet(pathToWrite)\n  }\n\n  def saveSingleCSV(rolledUpDataframe: Dataset[Row], filePath: String): Unit \u003d {\n    rolledUpDataframe.\n      coalesce(1)\n      .write.format(\"csv\")\n      .option(\"header\", \"true\")\n      .save(filePath)\n  }",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 12:50:38 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510677305810_-212409311",
+      "id": "20171114-220505_828100543",
+      "dateCreated": "Nov 14, 2017 10:05:05 PM",
+      "dateStarted": "Nov 14, 2017 11:02:09 PM",
+      "dateFinished": "Nov 14, 2017 11:02:15 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val dataJoinByImpressionsAndClicks: Dataset[Row] \u003d sparkSession\n      .read.parquet(\"/home/zimetrics/Output/Parquet/JoinOfClickAndImpression\")",
+      "user": "anonymous",
+      "dateUpdated": "Nov 14, 2017 11:40:50 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510677403611_-1872262039",
+      "id": "20171114-220643_169743596",
+      "dateCreated": "Nov 14, 2017 10:06:43 PM",
+      "dateStarted": "Nov 14, 2017 11:40:50 PM",
+      "dateFinished": "Nov 14, 2017 11:40:50 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "dataJoinByImpressionsAndClicks",
+      "user": "anonymous",
+      "dateUpdated": "Nov 14, 2017 11:43:37 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510683202413_-1226800645",
+      "id": "20171114-234322_1620651407",
+      "dateCreated": "Nov 14, 2017 11:43:22 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val rollUpBySite: Dataset[Row] \u003d processDataBySite(dataJoinByImpressionsAndClicks)\nval rollUpByDeviceType: Dataset[Row] \u003d processDataByDeviceType(dataJoinByImpressionsAndClicks)",
+      "user": "anonymous",
+      "dateUpdated": "Nov 14, 2017 11:02:42 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510678762713_1754690866",
+      "id": "20171114-222922_75310936",
+      "dateCreated": "Nov 14, 2017 10:29:22 PM",
+      "dateStarted": "Nov 14, 2017 11:02:43 PM",
+      "dateFinished": "Nov 14, 2017 11:02:44 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "rollUpBySite.printSchema\nrollUpBySite.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "Nov 14, 2017 11:13:04 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510680845803_914171574",
+      "id": "20171114-230405_937824788",
+      "dateCreated": "Nov 14, 2017 11:04:05 PM",
+      "dateStarted": "Nov 14, 2017 11:13:04 PM",
+      "dateFinished": "Nov 14, 2017 11:13:36 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "rollUpByDeviceType.printSchema\nrollUpByDeviceType.show(5)",
+      "user": "anonymous",
+      "dateUpdated": "Nov 14, 2017 11:12:57 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510680924936_2041809303",
+      "id": "20171114-230524_1696734648",
+      "dateCreated": "Nov 14, 2017 11:05:24 PM",
+      "dateStarted": "Nov 14, 2017 11:12:57 PM",
+      "dateFinished": "Nov 14, 2017 11:13:16 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "saveParquetFile(rollUpByDeviceType, \"/home/zimetrics/FrequenceDemo/Parquet/DeviceType.parquet\")\nsaveParquetFile(rollUpBySite,\"/home/zimetrics/FrequenceDemo/Parquet/Site.parquet\")",
+      "user": "anonymous",
+      "dateUpdated": "Nov 14, 2017 11:02:46 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510677672513_1732833511",
+      "id": "20171114-221112_1755767400",
+      "dateCreated": "Nov 14, 2017 10:11:12 PM",
+      "dateStarted": "Nov 14, 2017 11:02:46 PM",
+      "dateFinished": "Nov 14, 2017 11:04:01 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "saveSingleCSV(rollUpByDeviceType, \"/home/zimetrics/FrequenceDemo/CSV/DeviceType.csv\")\nsaveSingleCSV(rollUpBySite, \"/home/zimetrics/FrequenceDemo/CSV/Site.csv\")",
+      "user": "anonymous",
+      "dateUpdated": "Nov 14, 2017 11:04:05 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510677715931_-1167590877",
+      "id": "20171114-221155_1475233404",
+      "dateCreated": "Nov 14, 2017 10:11:55 PM",
+      "dateStarted": "Nov 14, 2017 11:04:05 PM",
+      "dateFinished": "Nov 14, 2017 11:04:52 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val clickDF \u003d  sparkSession\n      .read.parquet(\"/home/zimetrics/output-01/click/click.parquet\")\n      \nval impressionDF \u003d sparkSession\n      .read.parquet(\"/home/zimetrics/output-01/impression/impression.parquet\")",
+      "user": "anonymous",
+      "dateUpdated": "Nov 14, 2017 11:36:57 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510680935072_-380569772",
+      "id": "20171114-230535_1097876993",
+      "dateCreated": "Nov 14, 2017 11:05:35 PM",
+      "dateStarted": "Nov 14, 2017 11:36:57 PM",
+      "dateFinished": "Nov 14, 2017 11:36:58 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "clickDF.printSchema\nimpressionDF.printSchema\ndataJoinByImpressionsAndClicks.printScherma",
+      "user": "anonymous",
+      "dateUpdated": "Nov 14, 2017 11:38:13 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510682817139_-1424680884",
+      "id": "20171114-233657_1957923253",
+      "dateCreated": "Nov 14, 2017 11:36:57 PM",
+      "dateStarted": "Nov 14, 2017 11:38:13 PM",
+      "dateFinished": "Nov 14, 2017 11:38:14 PM",
+      "status": "ERROR",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "dataJoinByImpressionsAndClicks.printSchema",
+      "user": "anonymous",
+      "dateUpdated": "Nov 14, 2017 11:40:32 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510682893452_-170476091",
+      "id": "20171114-233813_751228156",
+      "dateCreated": "Nov 14, 2017 11:38:13 PM",
+      "dateStarted": "Nov 14, 2017 11:40:32 PM",
+      "dateFinished": "Nov 14, 2017 11:40:32 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val activityDF \u003d sparkSession.read.parquet(\"/home/zimetrics/Frequence/Data/Output/L2/activity/activity-2017-08-01.parquet\")\nval creativeDF \u003d sparkSession.read.parquet(\"/home/zimetrics/Frequence/Data/Output/L3/Creative/Creative-2017-08-01.parquet\")\nval sizeDF \u003d sparkSession.read.parquet(\"/home/zimetrics/Frequence/Data/Output/L3/Size/Size-2017-08-01.parquet\")\nval siteDF \u003d sparkSession.read.parquet(\"/home/zimetrics/Frequence/Data/Output/L3/Site/Site-2017-08-01.parquet\")\nval deviceDF \u003d sparkSession.read.parquet(\"/home/zimetrics/Frequence/Data/Output/L3/Device/DeviceType-2017-08-01.parquet\")\nval vendorDF \u003d sparkSession.read.parquet(\"/home/zimetrics/Frequence/Data/Output/L3/SupplyVendor/SupplyVendor-2017-08-01.parquet\") ",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 2:04:46 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "activityDF: org.apache.spark.sql.DataFrame \u003d [AdGroupId: string, ImpressionEventTime: timestamp ... 73 more fields]\ncreativeDF: org.apache.spark.sql.DataFrame \u003d [AdGroupId: string, CreativeId: string ... 6 more fields]\nsizeDF: org.apache.spark.sql.DataFrame \u003d [AdGroupId: string, AdFormat: string ... 5 more fields]\nsiteDF: org.apache.spark.sql.DataFrame \u003d [AdGroupId: string, Site: string ... 5 more fields]\ndeviceDF: org.apache.spark.sql.DataFrame \u003d [AdvertiserId: string, CampaignId: string ... 6 more fields]\nvendorDF: org.apache.spark.sql.DataFrame \u003d [AdGroupId: string, SupplyVendor: string ... 5 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510682960381_-1340623379",
+      "id": "20171114-233920_1624322593",
+      "dateCreated": "Nov 14, 2017 11:39:20 PM",
+      "dateStarted": "Nov 27, 2017 2:04:46 PM",
+      "dateFinished": "Nov 27, 2017 2:04:49 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "creativeDF.printSchema",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 2:09:04 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- AdGroupId: string (nullable \u003d true)\n |-- CreativeId: string (nullable \u003d true)\n |-- TtdCreativeId: string (nullable \u003d true)\n |-- ActivityDate: date (nullable \u003d true)\n |-- Impressions: long (nullable \u003d true)\n |-- Clicks: long (nullable \u003d true)\n |-- Cost: double (nullable \u003d true)\n |-- LooseActivity: integer (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511771686858_25532817",
+      "id": "20171127-140446_957575532",
+      "dateCreated": "Nov 27, 2017 2:04:46 PM",
+      "dateStarted": "Nov 27, 2017 2:09:04 PM",
+      "dateFinished": "Nov 27, 2017 2:09:04 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val creativeCSV \u003d sparkSession.read. ",
+      "user": "anonymous",
+      "dateUpdated": "Nov 27, 2017 2:10:14 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1511771720233_1348345508",
+      "id": "20171127-140520_1209181248",
+      "dateCreated": "Nov 27, 2017 2:05:20 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "FrequenceTests",
+  "id": "2CYHHZ671",
+  "angularObjects": {
+    "2D1YAXATV:shared_process": [],
+    "2CX4TXCM1:shared_process": [],
+    "2CX389Z42:shared_process": [],
+    "2CZVA8PUW:shared_process": [],
+    "2CXMJC9HP:shared_process": [],
+    "2CXR7NPBX:shared_process": [],
+    "2CXBXEKQG:shared_process": [],
+    "2D19VVURR:shared_process": [],
+    "2CYNK7W8U:shared_process": [],
+    "2CZ5NA4Y1:shared_process": [],
+    "2D1B51PD7:shared_process": [],
+    "2CY4CU5NH:shared_process": [],
+    "2CZ31ZF1N:shared_process": [],
+    "2D1D9C6XW:shared_process": [],
+    "2D1U9N7AK:shared_process": [],
+    "2CY1E8RTN:shared_process": [],
+    "2D1ZVYZHD:shared_process": [],
+    "2CYFJX59H:shared_process": [],
+    "2D1ZN9DCM:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}

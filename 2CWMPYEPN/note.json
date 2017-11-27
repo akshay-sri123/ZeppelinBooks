@@ -1,0 +1,219 @@
+{
+  "paragraphs": [
+    {
+      "text": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Nov 10, 2017 8:26:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510316941568_2039080053",
+      "id": "20171110-175901_610733846",
+      "dateCreated": "Nov 10, 2017 5:59:01 PM",
+      "dateStarted": "Nov 10, 2017 8:26:39 PM",
+      "dateFinished": "Nov 10, 2017 8:26:39 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val sparkSession: SparkSession \u003d SparkSession.builder.master(\"local\").appName(\"Test\").getOrCreate()\n\nval dataJoinByImpressionsAndClicks: Dataset[Row] \u003d sparkSession\n      .read.parquet(\"/home/zimetrics/IdeaProjects/spark-scala/L2/output/impression-click\")\n    \ndataJoinByImpressionsAndClicks.printSchema",
+      "user": "anonymous",
+      "dateUpdated": "Nov 10, 2017 8:26:41 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "sparkSession: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@52708b54\ndataJoinByImpressionsAndClicks: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [ImpressionId: string, LogEntryTime: timestamp ... 62 more fields]\nroot\n |-- ImpressionId: string (nullable \u003d true)\n |-- LogEntryTime: timestamp (nullable \u003d true)\n |-- PartnerId: string (nullable \u003d true)\n |-- AdvertiserId: string (nullable \u003d true)\n |-- CampaignId: string (nullable \u003d true)\n |-- AdGroupId: string (nullable \u003d true)\n |-- PrivateContractId: string (nullable \u003d true)\n |-- AudienceId: string (nullable \u003d true)\n |-- CreativeId: string (nullable \u003d true)\n |-- AdFormat: string (nullable \u003d true)\n |-- Frequency: string (nullable \u003d true)\n |-- SupplyVendor: string (nullable \u003d true)\n |-- SupplyVendorPublisherId: string (nullable \u003d true)\n |-- DealId: string (nullable \u003d true)\n |-- Site: string (nullable \u003d true)\n |-- ReferrerCategoriesList: string (nullable \u003d true)\n |-- FoldPosition: string (nullable \u003d true)\n |-- UserHourOfWeek: string (nullable \u003d true)\n |-- UserAgent: string (nullable \u003d true)\n |-- IPAddress: string (nullable \u003d true)\n |-- TDID: string (nullable \u003d true)\n |-- CountryLong: string (nullable \u003d true)\n |-- Region: string (nullable \u003d true)\n |-- Metro: string (nullable \u003d true)\n |-- City: string (nullable \u003d true)\n |-- DeviceType: string (nullable \u003d true)\n |-- OSFamily: string (nullable \u003d true)\n |-- OS: string (nullable \u003d true)\n |-- Browser: string (nullable \u003d true)\n |-- Recency: string (nullable \u003d true)\n |-- LanguageCode: string (nullable \u003d true)\n |-- MediaCost: string (nullable \u003d true)\n |-- FeeFeatureCost: string (nullable \u003d true)\n |-- DataUsageTotalCost: string (nullable \u003d true)\n |-- TTDCostInUSD: string (nullable \u003d true)\n |-- PartnerCostInUSD: string (nullable \u003d true)\n |-- AdvertiserCostInUSD: string (nullable \u003d true)\n |-- Latitude: string (nullable \u003d true)\n |-- Longitude: string (nullable \u003d true)\n |-- DeviceID: string (nullable \u003d true)\n |-- ZipCode: string (nullable \u003d true)\n |-- ImpressionDate: date (nullable \u003d true)\n |-- Source: string (nullable \u003d true)\n |-- UserDayOfWeek: long (nullable \u003d true)\n |-- UserHourOfDay: long (nullable \u003d true)\n |-- ClickId: string (nullable \u003d true)\n |-- ReferrerUrl: string (nullable \u003d true)\n |-- RedirectUrl: string (nullable \u003d true)\n |-- ChannelId: string (nullable \u003d true)\n |-- DisplayImpressionId: string (nullable \u003d true)\n |-- Keyword: string (nullable \u003d true)\n |-- KeywordId: string (nullable \u003d true)\n |-- MatchType: string (nullable \u003d true)\n |-- DistributionNetwork: string (nullable \u003d true)\n |-- RawUrl: string (nullable \u003d true)\n |-- ClickDate: date (nullable \u003d true)\n |-- ActivityDate: date (nullable \u003d true)\n |-- HasClick: integer (nullable \u003d true)\n |-- HasImpression: integer (nullable \u003d true)\n |-- HasClickImpression: integer (nullable \u003d true)\n |-- Year: integer (nullable \u003d true)\n |-- Month: integer (nullable \u003d true)\n |-- Day: integer (nullable \u003d true)\n |-- Hour: integer (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510317067317_217815033",
+      "id": "20171110-180107_305592645",
+      "dateCreated": "Nov 10, 2017 6:01:07 PM",
+      "dateStarted": "Nov 10, 2017 8:26:41 PM",
+      "dateFinished": "Nov 10, 2017 8:26:42 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "def processDataBySite(dataJoinByImpressionsAndClicks: Dataset[Row]) \u003d {\n\n    val rolledUpData: Dataset[Row] \u003d dataJoinByImpressionsAndClicks\n      .groupBy(col(\"AdGroupId\"), col(\"ActivityDate\"), col(\"Site\"))\n      .agg(sum(\"MediaCost\").as(\"Cost\"), countDistinct(\"ImpressionId\").as(\"Impressions\"), count(\"ClickId\").as(\"Clicks\"))\n\n    val aggregatedDatasetForSite: Dataset[Row] \u003d rolledUpData\n      .groupBy(rolledUpData.col(\"AdGroupId\"),\n        rolledUpData.col(\"ActivityDate\"),\n        rolledUpData.col(\"Site\"))\n      .agg(sum(rolledUpData.col(\"Cost\")).as(\"Cost\"),\n        sum(rolledUpData.col(\"Impressions\")).as(\"Impressions\"),\n        sum(rolledUpData.col(\"Clicks\")).as(\"Clicks\"))\n\n    val updatedDataset: Dataset[Row] \u003d aggregatedDatasetForSite.withColumn(\"LooseActivity\",\n      looseActivityUDF(aggregatedDatasetForSite.col(\"Clicks\"), aggregatedDatasetForSite.col(\"Impressions\")))\n\n    updatedDataset\n  }\n\n  def processDataByDeviceType(dataJoinByImpressionsAndClicks: Dataset[Row]) \u003d {\n\n    val rolledUpData: Dataset[Row] \u003d dataJoinByImpressionsAndClicks\n      .groupBy(col(\"AdvertiserId\"),  col(\"CampaignId\"), col(\"AdGroupId\"), col(\"DeviceType\"), col(\"ActivityDate\"))\n      .agg(countDistinct(\"ImpressionId\").as(\"Impressions\"), count(\"ClickId\").as(\"Clicks\"))\n\n    val aggregatedDatasetForSite: Dataset[Row] \u003d rolledUpData\n      .groupBy(rolledUpData.col(\"AdvertiserId\"),\n        rolledUpData.col(\"CampaignId\"),\n        rolledUpData.col(\"AdGroupId\"),\n        rolledUpData.col(\"DeviceType\"),\n        rolledUpData.col(\"ActivityDate\"))\n      .agg(sum(rolledUpData.col(\"Impressions\")).as(\"Impressions\"),\n        sum(rolledUpData.col(\"Clicks\")).as(\"Clicks\"))\n\n    val updatedDataset: Dataset[Row] \u003d aggregatedDatasetForSite.withColumn(\"LooseActivity\",\n      looseActivityUDF(aggregatedDatasetForSite.col(\"Clicks\"), aggregatedDatasetForSite.col(\"Impressions\")))\n\n    updatedDataset\n  }\n\n  val looseActivity: (Long, Long) \u003d\u003e Int \u003d (clicks: Long, impressions: Long) \u003d\u003e {\n    if (clicks \u003d\u003d 0 \u0026\u0026 impressions \u003c 5) 1\n    else 0\n  }\n  val looseActivityUDF \u003d udf(looseActivity)\n\n  def writeToParquet(rolledUpDataframe: Dataset[Row], pathToWrite: String): Unit \u003d {\n    rolledUpDataframe.write.mode(SaveMode.Overwrite).parquet(pathToWrite);\n  }",
+      "user": "anonymous",
+      "dateUpdated": "Nov 10, 2017 8:35:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "processDataBySite: (dataJoinByImpressionsAndClicks: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row])org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\nprocessDataByDeviceType: (dataJoinByImpressionsAndClicks: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row])org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\nlooseActivity: (Long, Long) \u003d\u003e Int \u003d \u003cfunction2\u003e\nlooseActivityUDF: org.apache.spark.sql.expressions.UserDefinedFunction \u003d UserDefinedFunction(\u003cfunction2\u003e,IntegerType,Some(List(LongType, LongType)))\nwriteToParquet: (rolledUpDataframe: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row], pathToWrite: String)Unit\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510325576950_151314925",
+      "id": "20171110-202256_1446509463",
+      "dateCreated": "Nov 10, 2017 8:22:56 PM",
+      "dateStarted": "Nov 10, 2017 8:35:01 PM",
+      "dateFinished": "Nov 10, 2017 8:35:02 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val rollUpByDeviceType: Dataset[Row] \u003d processDataByDeviceType(dataJoinByImpressionsAndClicks)\nval rollUpBySite: Dataset[Row] \u003d processDataBySite(dataJoinByImpressionsAndClicks)",
+      "user": "anonymous",
+      "dateUpdated": "Nov 10, 2017 8:35:04 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "rollUpByDeviceType: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [AdvertiserId: string, CampaignId: string ... 6 more fields]\nrollUpBySite: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [AdGroupId: string, ActivityDate: date ... 5 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510325622709_2107206479",
+      "id": "20171110-202342_1557716713",
+      "dateCreated": "Nov 10, 2017 8:23:42 PM",
+      "dateStarted": "Nov 10, 2017 8:35:04 PM",
+      "dateFinished": "Nov 10, 2017 8:35:05 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "rollUpByDeviceType.printSchema\nrollUpBySite.printSchema",
+      "user": "anonymous",
+      "dateUpdated": "Nov 10, 2017 8:35:07 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- AdvertiserId: string (nullable \u003d true)\n |-- CampaignId: string (nullable \u003d true)\n |-- AdGroupId: string (nullable \u003d true)\n |-- DeviceType: string (nullable \u003d true)\n |-- ActivityDate: date (nullable \u003d true)\n |-- Impressions: long (nullable \u003d true)\n |-- Clicks: long (nullable \u003d true)\n |-- LooseActivity: integer (nullable \u003d true)\n\nroot\n |-- AdGroupId: string (nullable \u003d true)\n |-- ActivityDate: date (nullable \u003d true)\n |-- Site: string (nullable \u003d true)\n |-- Cost: double (nullable \u003d true)\n |-- Impressions: long (nullable \u003d true)\n |-- Clicks: long (nullable \u003d true)\n |-- LooseActivity: integer (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1510325637716_332759875",
+      "id": "20171110-202357_1586772283",
+      "dateCreated": "Nov 10, 2017 8:23:57 PM",
+      "dateStarted": "Nov 10, 2017 8:35:07 PM",
+      "dateFinished": "Nov 10, 2017 8:35:07 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1510325656563_-750677703",
+      "id": "20171110-202416_1001138311",
+      "dateCreated": "Nov 10, 2017 8:24:16 PM",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "LoggingTest",
+  "id": "2CWMPYEPN",
+  "angularObjects": {
+    "2D11AVQAD:shared_process": [],
+    "2CY4RN2H5:shared_process": [],
+    "2CX7Q1Q1T:shared_process": [],
+    "2CX1P3H9Z:shared_process": [],
+    "2CZU2NA4S:shared_process": [],
+    "2CWU61A4R:shared_process": [],
+    "2D11EX7UT:shared_process": [],
+    "2CWQC1CB2:shared_process": [],
+    "2CZZGVVZ7:shared_process": [],
+    "2CZUJ8EVB:shared_process": [],
+    "2CYB6BDJG:shared_process": [],
+    "2CZXKKYFJ:shared_process": [],
+    "2CWYCYATT:shared_process": [],
+    "2CX2KKQ3J:shared_process": [],
+    "2D1D579ZH:shared_process": [],
+    "2CZTBGE9V:shared_process": [],
+    "2CYEEX1T3:shared_process": [],
+    "2CZ26EWF7:shared_process": [],
+    "2CXT9CVZ1:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
