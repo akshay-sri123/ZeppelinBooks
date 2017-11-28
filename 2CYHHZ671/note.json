@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\n val sparkSession: SparkSession \u003d {\n    SparkSession.builder.appName(\"FrequnceTests\").getOrCreate\n  }",
+      "text": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\n val sparkSession: SparkSession \u003d {\n    SparkSession.builder.appName(\"F  requnceTests\").getOrCreate\n  }",
       "user": "anonymous",
-      "dateUpdated": "Nov 27, 2017 12:50:55 PM",
+      "dateUpdated": "Nov 28, 2017 10:46:14 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -22,7 +22,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\nsparkSession: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@7fd14a86\n"
+            "data": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\nsparkSession: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@1107a762\n"
           }
         ]
       },
@@ -30,8 +30,8 @@
       "jobName": "paragraph_1510680569916_545599096",
       "id": "20171114-225929_217128280",
       "dateCreated": "Nov 14, 2017 10:59:29 PM",
-      "dateStarted": "Nov 27, 2017 12:50:55 PM",
-      "dateFinished": "Nov 27, 2017 12:50:57 PM",
+      "dateStarted": "Nov 28, 2017 10:33:38 AM",
+      "dateFinished": "Nov 28, 2017 10:33:49 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },

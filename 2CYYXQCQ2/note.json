@@ -3,7 +3,7 @@
     {
       "text": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}",
       "user": "anonymous",
-      "dateUpdated": "Nov 27, 2017 10:31:13 AM",
+      "dateUpdated": "Nov 28, 2017 10:33:44 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -31,15 +31,15 @@
       "jobName": "paragraph_1510229147552_1944597616",
       "id": "20171109-173547_1642768650",
       "dateCreated": "Nov 9, 2017 5:35:47 PM",
-      "dateStarted": "Nov 27, 2017 10:31:15 AM",
-      "dateFinished": "Nov 27, 2017 10:32:16 AM",
+      "dateStarted": "Nov 28, 2017 10:33:48 AM",
+      "dateFinished": "Nov 28, 2017 10:33:50 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "val sparkSession: SparkSession \u003d SparkSession.builder.master(\"local\").appName(\"Test\").getOrCreate()\nimport sparkSession.implicits._     \nval data \u003d sparkSession.read.text(\"/home/zimetrics/Documents/kinglear.txt\").as[String]\nval words \u003d data.flatMap(value \u003d\u003e value.split(\"\\\\s+\"))\nval groupedWords \u003d words.groupByKey(_.toLowerCase)\nval counts \u003d groupedWords.count()\ncounts.show()",
       "user": "anonymous",
-      "dateUpdated": "Nov 27, 2017 10:31:24 AM",
+      "dateUpdated": "Nov 28, 2017 10:33:49 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -59,7 +59,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "sparkSession: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@7fd14a86\nimport sparkSession.implicits._\ndata: org.apache.spark.sql.Dataset[String] \u003d [value: string]\nwords: org.apache.spark.sql.Dataset[String] \u003d [value: string]\ngroupedWords: org.apache.spark.sql.KeyValueGroupedDataset[String,String] \u003d org.apache.spark.sql.KeyValueGroupedDataset@480a5505\ncounts: org.apache.spark.sql.Dataset[(String, Long)] \u003d [value: string, count(1): bigint]\n+------------+--------+\n|       value|count(1)|\n+------------+--------+\n|        earl|       8|\n|(messenger:)|       1|\n|        some|      38|\n|       those|      13|\n|       still|      11|\n|     [giving|       4|\n|        eye.|       2|\n|       wife.|       2|\n|         art|      38|\n|        hope|       2|\n|        sol,|       1|\n|       come;|       3|\n|      lady\u0027s|       3|\n|      thwart|       1|\n|      waters|       1|\n|  encounter,|       1|\n|      spared|       1|\n|    wagtail?|       1|\n|     nature:|       1|\n| hot-blooded|       1|\n+------------+--------+\nonly showing top 20 rows\n\n"
+            "data": "sparkSession: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@1107a762\nimport sparkSession.implicits._\ndata: org.apache.spark.sql.Dataset[String] \u003d [value: string]\nwords: org.apache.spark.sql.Dataset[String] \u003d [value: string]\ngroupedWords: org.apache.spark.sql.KeyValueGroupedDataset[String,String] \u003d org.apache.spark.sql.KeyValueGroupedDataset@4bc635fe\ncounts: org.apache.spark.sql.Dataset[(String, Long)] \u003d [value: string, count(1): bigint]\n+------------+--------+\n|       value|count(1)|\n+------------+--------+\n|        earl|       8|\n|(messenger:)|       1|\n|        some|      38|\n|       those|      13|\n|       still|      11|\n|     [giving|       4|\n|        eye.|       2|\n|       wife.|       2|\n|         art|      38|\n|        hope|       2|\n|        sol,|       1|\n|       come;|       3|\n|      lady\u0027s|       3|\n|      thwart|       1|\n|      waters|       1|\n|  encounter,|       1|\n|      spared|       1|\n|    wagtail?|       1|\n|     nature:|       1|\n| hot-blooded|       1|\n+------------+--------+\nonly showing top 20 rows\n\n"
           }
         ]
       },
@@ -67,8 +67,8 @@
       "jobName": "paragraph_1510125702078_-869880889",
       "id": "20171108-125142_1218110582",
       "dateCreated": "Nov 8, 2017 12:51:42 PM",
-      "dateStarted": "Nov 27, 2017 10:32:16 AM",
-      "dateFinished": "Nov 27, 2017 10:32:30 AM",
+      "dateStarted": "Nov 28, 2017 10:33:49 AM",
+      "dateFinished": "Nov 28, 2017 10:33:59 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -3120,7 +3120,7 @@
     {
       "text": "val creativeDF \u003d sparkSession.read.parquet(\"/home/zimetrics/Frequence/Data/Output/L3/Creative/Creative-2017-08-01.parquet\")\nval sizeDF \u003d sparkSession.read.parquet(\"/home/zimetrics/Frequence/Data/Output/L3/Size/Size-2017-08-01.parquet\")\nval siteDF \u003d sparkSession.read.parquet(\"/home/zimetrics/Frequence/Data/Output/L3/Site/Site-2017-08-01.parquet\")\nval deviceDF \u003d sparkSession.read.parquet(\"/home/zimetrics/Frequence/Data/Output/L3/Device/DeviceType-2017-08-01.parquet\")\nval vendorDF \u003d sparkSession.read.parquet(\"/home/zimetrics/Frequence/Data/Output/L3/SupplyVendor/SupplyVendor-2017-08-01.parquet\")",
       "user": "anonymous",
-      "dateUpdated": "Nov 27, 2017 11:06:06 AM",
+      "dateUpdated": "Nov 27, 2017 5:28:50 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -3147,15 +3147,15 @@
       "jobName": "paragraph_1511518630627_1189752823",
       "id": "20171124-154710_1274257459",
       "dateCreated": "Nov 24, 2017 3:47:10 PM",
-      "dateStarted": "Nov 27, 2017 11:06:06 AM",
-      "dateFinished": "Nov 27, 2017 11:06:08 AM",
+      "dateStarted": "Nov 27, 2017 5:28:50 PM",
+      "dateFinished": "Nov 27, 2017 5:28:53 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "println(\"Creative Schema : \")\ncreativeDF.printSchema\nprintln(\"Size Schema : \")\nsizeDF.printSchema\nprintln(\"Site Schema : \")\nsiteDF.printSchema\nprintln(\"Device Schema : \")\ndeviceDF.printSchema\nprintln(\"Vendor Schema : \")\nvendorDF.printSchema",
       "user": "anonymous",
-      "dateUpdated": "Nov 27, 2017 11:06:09 AM",
+      "dateUpdated": "Nov 27, 2017 5:28:53 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -3182,8 +3182,8 @@
       "jobName": "paragraph_1511760363006_-1612618120",
       "id": "20171127-105603_1340189159",
       "dateCreated": "Nov 27, 2017 10:56:03 AM",
-      "dateStarted": "Nov 27, 2017 11:06:10 AM",
-      "dateFinished": "Nov 27, 2017 11:06:12 AM",
+      "dateStarted": "Nov 27, 2017 5:28:53 PM",
+      "dateFinished": "Nov 27, 2017 5:28:56 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -3225,7 +3225,7 @@
     {
       "text": "val activityDF \u003d sparkSession.read.parquet(\"/home/zimetrics/Frequence/Data/Output/L2/activity/activity-2017-08-01.parquet\")\nactivityDF.printSchema",
       "user": "anonymous",
-      "dateUpdated": "Nov 27, 2017 11:25:27 AM",
+      "dateUpdated": "Nov 27, 2017 5:29:02 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -3252,15 +3252,15 @@
       "jobName": "paragraph_1511761694604_-495309851",
       "id": "20171127-111814_615650589",
       "dateCreated": "Nov 27, 2017 11:18:14 AM",
-      "dateStarted": "Nov 27, 2017 11:25:27 AM",
-      "dateFinished": "Nov 27, 2017 11:25:28 AM",
+      "dateStarted": "Nov 27, 2017 5:29:02 PM",
+      "dateFinished": "Nov 27, 2017 5:29:03 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "val imp \u003d creativeDF.select(\"Impressions\")",
       "user": "anonymous",
-      "dateUpdated": "Nov 27, 2017 2:59:50 PM",
+      "dateUpdated": "Nov 27, 2017 5:29:06 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -3287,8 +3287,8 @@
       "jobName": "paragraph_1511762114911_738610520",
       "id": "20171127-112514_1741575081",
       "dateCreated": "Nov 27, 2017 11:25:14 AM",
-      "dateStarted": "Nov 27, 2017 2:59:50 PM",
-      "dateFinished": "Nov 27, 2017 2:59:50 PM",
+      "dateStarted": "Nov 27, 2017 5:29:06 PM",
+      "dateFinished": "Nov 27, 2017 5:29:07 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },

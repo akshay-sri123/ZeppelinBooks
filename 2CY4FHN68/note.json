@@ -263,184 +263,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "def processDataBySite(dataJoinByImpressionsAndClicks: Dataset[Row]) \u003d {\n\n    val rolledUpData: Dataset[Row] \u003d dataJoinByImpressionsAndClicks\n      .groupBy(col(\"AdGroupId\"), col(\"ActivityDate\"), col(\"Site\"))\n      .agg(sum(\"MediaCost\").as(\"Cost\"), countDistinct(\"ImpressionId\").as(\"Impressions\"), count(\"ClickId\").as(\"Clicks\"))\n\n    val aggregatedDatasetForSite: Dataset[Row] \u003d rolledUpData\n      .groupBy(rolledUpData.col(\"AdGroupId\"),\n        rolledUpData.col(\"ActivityDate\"),\n        rolledUpData.col(\"Site\"))\n      .agg(sum(rolledUpData.col(\"Cost\")).as(\"Cost\"),\n        sum(rolledUpData.col(\"Impressions\")).as(\"Impressions\"),\n        sum(rolledUpData.col(\"Clicks\")).as(\"Clicks\"))\n\n    val updatedDataset: Dataset[Row] \u003d aggregatedDatasetForSite.withColumn(\"LooseActivity\",\n      looseActivityUDF(aggregatedDatasetForSite.col(\"Clicks\"), aggregatedDatasetForSite.col(\"Impressions\")))\n\n    updatedDataset\n  }\n\n  def processDataByDeviceType(dataJoinByImpressionsAndClicks: Dataset[Row]) \u003d {\n\n    val rolledUpData: Dataset[Row] \u003d dataJoinByImpressionsAndClicks\n      .groupBy(col(\"AdvertiserId\"),  col(\"CampaignId\"), col(\"AdGroupId\"), col(\"DeviceType\"), col(\"ActivityDate\"))\n      .agg(countDistinct(\"ImpressionId\").as(\"Impressions\"), count(\"ClickId\").as(\"Clicks\"))\n\n    val aggregatedDatasetForSite: Dataset[Row] \u003d rolledUpData\n      .groupBy(rolledUpData.col(\"AdvertiserId\"),\n        rolledUpData.col(\"CampaignId\"),\n        rolledUpData.col(\"AdGroupId\"),\n        rolledUpData.col(\"DeviceType\"),\n        rolledUpData.col(\"ActivityDate\"))\n      .agg(sum(rolledUpData.col(\"Impressions\")).as(\"Impressions\"),\n        sum(rolledUpData.col(\"Clicks\")).as(\"Clicks\"))\n\n    val updatedDataset: Dataset[Row] \u003d aggregatedDatasetForSite.withColumn(\"LooseActivity\",\n      looseActivityUDF(aggregatedDatasetForSite.col(\"Clicks\"), aggregatedDatasetForSite.col(\"Impressions\")))\n\n    updatedDataset\n  }\n\n  val looseActivity: (Long, Long) \u003d\u003e Int \u003d (clicks: Long, impressions: Long) \u003d\u003e {\n    if (clicks \u003d\u003d 0 \u0026\u0026 impressions \u003c 5) 1\n    else 0\n  }\n  val looseActivityUDF \u003d udf(looseActivity)\n\n  def writeToParquet(rolledUpDataframe: Dataset[Row], pathToWrite: String): Unit \u003d {\n    rolledUpDataframe.write.mode(SaveMode.Overwrite).parquet(pathToWrite)\n  }\n\n  def writeToCSV(datasetToWrite: Dataset[Row], filePath: String):Unit \u003d {\n    datasetToWrite.write.mode(SaveMode.Overwrite).csv(filePath)\n  }",
-      "user": "anonymous",
-      "dateUpdated": "Nov 13, 2017 1:36:23 PM",
-      "config": {
-        "colWidth": 12.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala"
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "processDataBySite: (dataJoinByImpressionsAndClicks: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row])org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\nprocessDataByDeviceType: (dataJoinByImpressionsAndClicks: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row])org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]\nlooseActivity: (Long, Long) \u003d\u003e Int \u003d \u003cfunction2\u003e\nlooseActivityUDF: org.apache.spark.sql.expressions.UserDefinedFunction \u003d UserDefinedFunction(\u003cfunction2\u003e,IntegerType,Some(List(LongType, LongType)))\nwriteToParquet: (rolledUpDataframe: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row], pathToWrite: String)Unit\nwriteToCSV: (datasetToWrite: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row], filePath: String)Unit\n"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1510139579393_1260602042",
-      "id": "20171108-164259_546508483",
-      "dateCreated": "Nov 8, 2017 4:42:59 PM",
-      "dateStarted": "Nov 13, 2017 1:36:23 PM",
-      "dateFinished": "Nov 13, 2017 1:36:24 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "val dataJoinByImpressionsAndClicks: Dataset[Row] \u003d sparkSession\n      .read.parquet(\"/home/zimetrics/IdeaProjects/spark-scala/L2/output/impression-click\")\n\ndataJoinByImpressionsAndClicks.printSchema",
-      "user": "anonymous",
-      "dateUpdated": "Nov 13, 2017 11:12:51 AM",
-      "config": {
-        "colWidth": 12.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala"
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "dataJoinByImpressionsAndClicks: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [ImpressionId: string, LogEntryTime: timestamp ... 62 more fields]\nroot\n |-- ImpressionId: string (nullable \u003d true)\n |-- LogEntryTime: timestamp (nullable \u003d true)\n |-- PartnerId: string (nullable \u003d true)\n |-- AdvertiserId: string (nullable \u003d true)\n |-- CampaignId: string (nullable \u003d true)\n |-- AdGroupId: string (nullable \u003d true)\n |-- PrivateContractId: string (nullable \u003d true)\n |-- AudienceId: string (nullable \u003d true)\n |-- CreativeId: string (nullable \u003d true)\n |-- AdFormat: string (nullable \u003d true)\n |-- Frequency: string (nullable \u003d true)\n |-- SupplyVendor: string (nullable \u003d true)\n |-- SupplyVendorPublisherId: string (nullable \u003d true)\n |-- DealId: string (nullable \u003d true)\n |-- Site: string (nullable \u003d true)\n |-- ReferrerCategoriesList: string (nullable \u003d true)\n |-- FoldPosition: string (nullable \u003d true)\n |-- UserHourOfWeek: string (nullable \u003d true)\n |-- UserAgent: string (nullable \u003d true)\n |-- IPAddress: string (nullable \u003d true)\n |-- TDID: string (nullable \u003d true)\n |-- CountryLong: string (nullable \u003d true)\n |-- Region: string (nullable \u003d true)\n |-- Metro: string (nullable \u003d true)\n |-- City: string (nullable \u003d true)\n |-- DeviceType: string (nullable \u003d true)\n |-- OSFamily: string (nullable \u003d true)\n |-- OS: string (nullable \u003d true)\n |-- Browser: string (nullable \u003d true)\n |-- Recency: string (nullable \u003d true)\n |-- LanguageCode: string (nullable \u003d true)\n |-- MediaCost: string (nullable \u003d true)\n |-- FeeFeatureCost: string (nullable \u003d true)\n |-- DataUsageTotalCost: string (nullable \u003d true)\n |-- TTDCostInUSD: string (nullable \u003d true)\n |-- PartnerCostInUSD: string (nullable \u003d true)\n |-- AdvertiserCostInUSD: string (nullable \u003d true)\n |-- Latitude: string (nullable \u003d true)\n |-- Longitude: string (nullable \u003d true)\n |-- DeviceID: string (nullable \u003d true)\n |-- ZipCode: string (nullable \u003d true)\n |-- ImpressionDate: date (nullable \u003d true)\n |-- Source: string (nullable \u003d true)\n |-- UserDayOfWeek: long (nullable \u003d true)\n |-- UserHourOfDay: long (nullable \u003d true)\n |-- ClickId: string (nullable \u003d true)\n |-- ReferrerUrl: string (nullable \u003d true)\n |-- RedirectUrl: string (nullable \u003d true)\n |-- ChannelId: string (nullable \u003d true)\n |-- DisplayImpressionId: string (nullable \u003d true)\n |-- Keyword: string (nullable \u003d true)\n |-- KeywordId: string (nullable \u003d true)\n |-- MatchType: string (nullable \u003d true)\n |-- DistributionNetwork: string (nullable \u003d true)\n |-- RawUrl: string (nullable \u003d true)\n |-- ClickDate: date (nullable \u003d true)\n |-- ActivityDate: date (nullable \u003d true)\n |-- HasClick: integer (nullable \u003d true)\n |-- HasImpression: integer (nullable \u003d true)\n |-- HasClickImpression: integer (nullable \u003d true)\n |-- Year: integer (nullable \u003d true)\n |-- Month: integer (nullable \u003d true)\n |-- Day: integer (nullable \u003d true)\n |-- Hour: integer (nullable \u003d true)\n\n"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1510551689521_259401287",
-      "id": "20171113-111129_1217439115",
-      "dateCreated": "Nov 13, 2017 11:11:29 AM",
-      "dateStarted": "Nov 13, 2017 11:12:51 AM",
-      "dateFinished": "Nov 13, 2017 11:12:51 AM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "val rollUpByDeviceType: Dataset[Row] \u003d processDataByDeviceType(dataJoinByImpressionsAndClicks)",
-      "user": "anonymous",
-      "dateUpdated": "Nov 13, 2017 1:43:56 PM",
-      "config": {
-        "colWidth": 12.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala"
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "ERROR",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "org.apache.spark.sql.AnalysisException: Reference \u0027AdvertiserId\u0027 is ambiguous, could be: AdvertiserId#31, AdvertiserId#60.;\n  at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.resolve(LogicalPlan.scala:264)\n  at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.resolveChildren(LogicalPlan.scala:148)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveReferences$$anonfun$apply$9$$anonfun$applyOrElse$5$$anonfun$34.apply(Analyzer.scala:612)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveReferences$$anonfun$apply$9$$anonfun$applyOrElse$5$$anonfun$34.apply(Analyzer.scala:612)\n  at org.apache.spark.sql.catalyst.analysis.package$.withPosition(package.scala:48)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveReferences$$anonfun$apply$9$$anonfun$applyOrElse$5.applyOrElse(Analyzer.scala:612)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveReferences$$anonfun$apply$9$$anonfun$applyOrElse$5.applyOrElse(Analyzer.scala:608)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformUp$1.apply(TreeNode.scala:310)\n  at org.apache.spark.sql.catalyst.trees.TreeNode$$anonfun$transformUp$1.apply(TreeNode.scala:310)\n  at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.transformUp(TreeNode.scala:309)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpressionUp$1(QueryPlan.scala:282)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan.org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$2(QueryPlan.scala:292)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$2$1.apply(QueryPlan.scala:296)\n  at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n  at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n  at scala.collection.mutable.ResizableArray$class.foreach(ResizableArray.scala:59)\n  at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:48)\n  at scala.collection.TraversableLike$class.map(TraversableLike.scala:234)\n  at scala.collection.AbstractTraversable.map(Traversable.scala:104)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan.org$apache$spark$sql$catalyst$plans$QueryPlan$$recursiveTransform$2(QueryPlan.scala:296)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan$$anonfun$7.apply(QueryPlan.scala:301)\n  at org.apache.spark.sql.catalyst.trees.TreeNode.mapProductIterator(TreeNode.scala:188)\n  at org.apache.spark.sql.catalyst.plans.QueryPlan.transformExpressionsUp(QueryPlan.scala:301)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveReferences$$anonfun$apply$9.applyOrElse(Analyzer.scala:608)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveReferences$$anonfun$apply$9.applyOrElse(Analyzer.scala:550)\n  at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan$$anonfun$resolveOperators$1.apply(LogicalPlan.scala:61)\n  at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan$$anonfun$resolveOperators$1.apply(LogicalPlan.scala:61)\n  at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:70)\n  at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.resolveOperators(LogicalPlan.scala:60)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveReferences$.apply(Analyzer.scala:550)\n  at org.apache.spark.sql.catalyst.analysis.Analyzer$ResolveReferences$.apply(Analyzer.scala:487)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:85)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1$$anonfun$apply$1.apply(RuleExecutor.scala:82)\n  at scala.collection.LinearSeqOptimized$class.foldLeft(LinearSeqOptimized.scala:124)\n  at scala.collection.immutable.List.foldLeft(List.scala:84)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:82)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor$$anonfun$execute$1.apply(RuleExecutor.scala:74)\n  at scala.collection.immutable.List.foreach(List.scala:381)\n  at org.apache.spark.sql.catalyst.rules.RuleExecutor.execute(RuleExecutor.scala:74)\n  at org.apache.spark.sql.execution.QueryExecution.analyzed$lzycompute(QueryExecution.scala:64)\n  at org.apache.spark.sql.execution.QueryExecution.analyzed(QueryExecution.scala:62)\n  at org.apache.spark.sql.execution.QueryExecution.assertAnalyzed(QueryExecution.scala:50)\n  at org.apache.spark.sql.Dataset$.ofRows(Dataset.scala:63)\n  at org.apache.spark.sql.RelationalGroupedDataset.toDF(RelationalGroupedDataset.scala:62)\n  at org.apache.spark.sql.RelationalGroupedDataset.agg(RelationalGroupedDataset.scala:222)\n  at processDataByDeviceType(\u003cconsole\u003e:65)\n  ... 50 elided\n"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1510551714256_-568932446",
-      "id": "20171113-111154_1126367962",
-      "dateCreated": "Nov 13, 2017 11:11:54 AM",
-      "dateStarted": "Nov 13, 2017 1:43:56 PM",
-      "dateFinished": "Nov 13, 2017 1:43:57 PM",
-      "status": "ERROR",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "val readFromCSV \u003d sparkSession.read.format(\"csv\").option(\"header\", \"true\").option(\"delimiter\",\",\").load(\"/home/zimetrics/Output/CSV/DeviceType/part-00000-00f94648-8685-4948-a5c4-d6f3b50c27b3-c000.csv\")",
-      "user": "anonymous",
-      "dateUpdated": "Nov 13, 2017 11:38:34 AM",
-      "config": {
-        "colWidth": 12.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala"
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "readFromCSV: org.apache.spark.sql.DataFrame \u003d [36vfxho: string, abz100h: string ... 6 more fields]\n"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1510551743247_1085749980",
-      "id": "20171113-111223_619032711",
-      "dateCreated": "Nov 13, 2017 11:12:23 AM",
-      "dateStarted": "Nov 13, 2017 11:38:34 AM",
-      "dateFinished": "Nov 13, 2017 11:38:34 AM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "readFromCSV.printSchema\n",
-      "user": "anonymous",
-      "dateUpdated": "Nov 13, 2017 11:38:35 AM",
-      "config": {
-        "colWidth": 12.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala"
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "root\n |-- 36vfxho: string (nullable \u003d true)\n |-- abz100h: string (nullable \u003d true)\n |-- ojc4em0: string (nullable \u003d true)\n |-- PC: string (nullable \u003d true)\n |-- 2017-08-20: string (nullable \u003d true)\n |-- 29: string (nullable \u003d true)\n |-- 06: string (nullable \u003d true)\n |-- 07: string (nullable \u003d true)\n\n"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1510552892422_1015778230",
-      "id": "20171113-113132_22734004",
-      "dateCreated": "Nov 13, 2017 11:31:32 AM",
-      "dateStarted": "Nov 13, 2017 11:38:35 AM",
-      "dateFinished": "Nov 13, 2017 11:38:35 AM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
       "text": "\nval donutJson4: String \u003d\n    \"\"\"\n      |{\n      |\"donut_name\":\"Glazed Donut\",\n      |\"taste_level\":\"Very Tasty\",\n      |\"price\":2.50\n      |}\n      \"\"\"\n   .stripMargin",
       "user": "anonymous",
-      "dateUpdated": "Nov 15, 2017 2:58:36 PM",
+      "dateUpdated": "Nov 28, 2017 10:47:18 AM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -467,74 +292,8 @@
       "jobName": "paragraph_1510553031522_343604933",
       "id": "20171113-113351_26980467",
       "dateCreated": "Nov 13, 2017 11:33:51 AM",
-      "dateStarted": "Nov 15, 2017 2:58:36 PM",
-      "dateFinished": "Nov 15, 2017 2:58:36 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "//Job L3\n// StarTime: Thu Nov 16 13:33:41 IST 2017\n// Endtime: Thu Nov 16 13:35:51 IST 2017\n//2:10\n\n//Job L3SQL\n// StarTime: Thu Nov 16 13:36:48 IST 2017\n// Endtime: Thu Nov 16 13:38:42 IST 2017\n//1:52",
-      "user": "anonymous",
-      "dateUpdated": "Nov 16, 2017 1:40:30 PM",
-      "config": {
-        "colWidth": 12.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": []
-      },
-      "apps": [],
-      "jobName": "paragraph_1510738495449_-357729493",
-      "id": "20171115-150455_1811446573",
-      "dateCreated": "Nov 15, 2017 3:04:55 PM",
-      "dateStarted": "Nov 16, 2017 1:40:30 PM",
-      "dateFinished": "Nov 16, 2017 1:40:30 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "import sqlContext.implicits._\nval testvec \u003d Array( Array(1.0, 2.0, 3.0, 4.0), Array(5.0, 6.0, 7.0, 8.0))\nval testrdd \u003d sc.parallelize(testvec)\ntestrdd.toDF\n",
-      "user": "anonymous",
-      "dateUpdated": "Nov 27, 2017 2:54:35 PM",
-      "config": {
-        "colWidth": 12.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala"
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "import sqlContext.implicits._\ntestvec: Array[Array[Double]] \u003d Array(Array(1.0, 2.0, 3.0, 4.0), Array(5.0, 6.0, 7.0, 8.0))\ntestrdd: org.apache.spark.rdd.RDD[Array[Double]] \u003d ParallelCollectionRDD[68] at parallelize at \u003cconsole\u003e:60\nres32: org.apache.spark.sql.DataFrame \u003d [value: array\u003cdouble\u003e]\n"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1510819741328_-1190330356",
-      "id": "20171116-133901_151225262",
-      "dateCreated": "Nov 16, 2017 1:39:01 PM",
-      "dateStarted": "Nov 27, 2017 2:54:35 PM",
-      "dateFinished": "Nov 27, 2017 2:54:37 PM",
+      "dateStarted": "Nov 28, 2017 10:47:18 AM",
+      "dateFinished": "Nov 28, 2017 10:47:19 AM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -609,6 +368,41 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "val array \u003d Array.ofDim[Int](3,3)\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        array(i)(j) \u003d i+j\n    }\n}\n\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        print(array(i)(j)+\" \")\n    }\n    println()\n}\nprintln()\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 2 to 0 by -1){\n        print(array(i)(j)+\" \")\n    }\n    println()\n}\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "Nov 28, 2017 10:55:12 AM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "array: Array[Array[Int]] \u003d Array(Array(0, 0, 0), Array(0, 0, 0), Array(0, 0, 0))\n0 1 2 \n1 2 3 \n2 3 4 \n\n2 1 0 \n3 2 1 \n4 3 2 \n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511774819332_832212746",
+      "id": "20171127-145659_1361323117",
+      "dateCreated": "Nov 27, 2017 2:56:59 PM",
+      "dateStarted": "Nov 28, 2017 10:55:12 AM",
+      "dateFinished": "Nov 28, 2017 10:55:14 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "user": "anonymous",
       "config": {},
       "settings": {
@@ -616,9 +410,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1511774819332_832212746",
-      "id": "20171127-145659_1361323117",
-      "dateCreated": "Nov 27, 2017 2:56:59 PM",
+      "jobName": "paragraph_1511845409080_-484170108",
+      "id": "20171128-103329_656349368",
+      "dateCreated": "Nov 28, 2017 10:33:29 AM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
