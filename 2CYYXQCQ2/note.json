@@ -3520,7 +3520,6 @@
         "params": {},
         "forms": {}
       },
-      "results": "org.apache.thrift.transport.TTransportException",
       "apps": [],
       "jobName": "paragraph_1511781192958_-625393702",
       "id": "20171127-164312_1103017247",
@@ -3528,13 +3527,13 @@
       "dateStarted": "Nov 29, 2017 12:30:10 PM",
       "dateFinished": "Nov 29, 2017 12:42:17 PM",
       "status": "ERROR",
-      "errorMessage": "org.apache.thrift.transport.TTransportException\n\tat org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:132)\n\tat org.apache.thrift.transport.TTransport.readAll(TTransport.java:86)\n\tat org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:429)\n\tat org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:318)\n\tat org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:219)\n\tat org.apache.thrift.TServiceClient.receiveBase(TServiceClient.java:69)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Client.recv_interpret(RemoteInterpreterService.java:266)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Client.interpret(RemoteInterpreterService.java:250)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.interpret(RemoteInterpreter.java:373)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:97)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:406)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:175)\n\tat org.apache.zeppelin.scheduler.RemoteScheduler$JobRunner.run(RemoteScheduler.java:329)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "val weeklyData \u003d sparkSession.read\n      .format(\"jdbc\")\n      .option(\"url\", \"jdbc:mysql://brandcdn-dev.cgy3zqnvq7mi.us-west-1.rds.amazonaws.com:3306/brandcdn_dev_weekly\")\n      .option(\"dbtable\", \"brandcdn_dev_weekly.report_ad_size_records\")\n      .option(\"user\", \"frequence_admin\")\n      .option(\"password\", \"DrPF#9sJ6ZkTn\")\n      .option(\"driver\", \"com.mysql.jdbc.Driver\")\n      .load()\n      .filter(\"date \u003d \u00272017-08-01\u0027\")",
       "user": "anonymous",
-      "dateUpdated": "Nov 29, 2017 3:38:15 PM",
+      "dateUpdated": "Nov 29, 2017 8:04:55 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -3561,8 +3560,8 @@
       "jobName": "paragraph_1511938810481_-678833972",
       "id": "20171129-123010_1346199732",
       "dateCreated": "Nov 29, 2017 12:30:10 PM",
-      "dateStarted": "Nov 29, 2017 3:38:16 PM",
-      "dateFinished": "Nov 29, 2017 3:38:19 PM",
+      "dateStarted": "Nov 29, 2017 8:04:55 PM",
+      "dateFinished": "Nov 29, 2017 8:04:58 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },

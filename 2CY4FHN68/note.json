@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "import Array._",
+      "text": "import Array._\nimport scala.io.StdIn._",
       "user": "anonymous",
-      "dateUpdated": "Nov 29, 2017 6:30:04 PM",
+      "dateUpdated": "Nov 29, 2017 7:00:12 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -22,7 +22,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import Array._\n"
+            "data": "import Array._\nimport scala.io.StdIn._\n"
           }
         ]
       },
@@ -30,8 +30,8 @@
       "jobName": "paragraph_1511941724469_-216228997",
       "id": "20171129-131844_778682578",
       "dateCreated": "Nov 29, 2017 1:18:44 PM",
-      "dateStarted": "Nov 29, 2017 6:30:04 PM",
-      "dateFinished": "Nov 29, 2017 6:30:05 PM",
+      "dateStarted": "Nov 29, 2017 7:00:12 PM",
+      "dateFinished": "Nov 29, 2017 7:00:13 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -403,9 +403,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "var sum1, sum2\u003d0\nvar array \u003d Array.ofDim[Int](3,3)\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        array(i)(j) \u003d i+j\n    }\n}\n\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        print(array(i)(j)+\" \")\n        sum1+\u003darray(i)(j)\n    }\n    println()\n}\nprintln()\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 2 to 0 by -1){\n        print(array(i)(j)+\" \")\n        sum2+\u003darray(i)(j)\n    }\n    println()\n}\n\n\n",
+      "text": "var sum1, sum2\u003d0\nvar array \u003d Array(Array(4,1,6), Array(22,4,11), Array(8,5,33))  \n\n\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        print(array(i)(j)+\" \")\n         sum1+\u003darray(i)(j)\n    }\n    println()\n}\nprintln(\"----------\")\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 2 to 0 by -1){\n        print(array(i)(j)+\" \")\n        sum2+\u003darray(i)(j)\n    }\n    println()\n}\n\n\nprintln(\"Sum1: \"+sum1+\", Sum2: \"+sum2)\n",
       "user": "anonymous",
-      "dateUpdated": "Nov 28, 2017 12:33:02 PM",
+      "dateUpdated": "Nov 29, 2017 7:16:48 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -424,7 +424,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "sum1: Int \u003d 0\nsum2: Int \u003d 0\narray: Array[Array[Int]] \u003d Array(Array(0, 0, 0), Array(0, 0, 0), Array(0, 0, 0))\n0 1 2 \n1 2 3 \n2 3 4 \n\n2 1 0 \n3 2 1 \n4 3 2 \n"
+            "data": "sum1: Int \u003d 0\nsum2: Int \u003d 0\narray: Array[Array[Int]] \u003d Array(Array(4, 1, 6), Array(22, 4, 11), Array(8, 5, 33))\n4 1 6 \n22 4 11 \n8 5 33 \n----------\n6 1 4 \n11 4 22 \n33 5 8 \nSum1: 94, Sum2: 94\n"
           }
         ]
       },
@@ -432,8 +432,8 @@
       "jobName": "paragraph_1511774819332_832212746",
       "id": "20171127-145659_1361323117",
       "dateCreated": "Nov 27, 2017 2:56:59 PM",
-      "dateStarted": "Nov 28, 2017 12:33:02 PM",
-      "dateFinished": "Nov 28, 2017 12:33:03 PM",
+      "dateStarted": "Nov 29, 2017 7:16:48 PM",
+      "dateFinished": "Nov 29, 2017 7:16:52 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -640,9 +640,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "val height \u003d 1.9d\nval name \u003d \"James\"\nprintln(f\"$name%s is $height%2.2f meters tall\") //James is 1.90 meters tall",
+      "text": "val height \u003d 1.9d\nval name \u003d \"James\"\nprintln(f\"$name%s is $height%2.3f meters tall\") //James is 1.90 meters tall",
       "user": "anonymous",
-      "dateUpdated": "Nov 29, 2017 6:39:47 PM",
+      "dateUpdated": "Nov 29, 2017 8:00:53 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -661,7 +661,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "height: Double \u003d 1.9\nname: String \u003d James\nJames is 1.90 meters tall\n"
+            "data": "height: Double \u003d 1.9\nname: String \u003d James\nJames is 1.900 meters tall\n"
           }
         ]
       },
@@ -669,15 +669,15 @@
       "jobName": "paragraph_1511856081487_-1366185992",
       "id": "20171128-133121_411698891",
       "dateCreated": "Nov 28, 2017 1:31:21 PM",
-      "dateStarted": "Nov 29, 2017 6:39:47 PM",
-      "dateFinished": "Nov 29, 2017 6:39:48 PM",
+      "dateStarted": "Nov 29, 2017 8:00:53 PM",
+      "dateFinished": "Nov 29, 2017 8:00:55 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "import Array._\n\nvar sum1, sum2 \u003d 0\nvar array \u003d (for {\n    r \u003c- 0 until 3\n    c \u003c- 2 until 5\n} yield r+c).toArray\n\nvar newArr \u003d array.grouped(3).toArray\n\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        if(i\u003d\u003dj){\n            sum1+\u003dnewArr(i)(j)\n        }\n    }\n    println()\n}\n\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 2 to 0 by -1){\n        if(i \u003d\u003d j){\n        sum2+\u003dnewArr(i)(j)\n        }\n    println()\n    }\n}\n\nprintln(\"Sum1: \"+sum1+\", Sum2: \"+sum2)\n",
+      "text": " val value \u003d 1.4142135623730951\n\n//3 decimal places\nprintln((value * 1000).round / 1000.toDouble)\n\n//4 decimal places\nprintln((value * 10000).round / 10000.toDouble)",
       "user": "anonymous",
-      "dateUpdated": "Nov 29, 2017 6:55:09 PM",
+      "dateUpdated": "Nov 29, 2017 7:55:20 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -696,7 +696,42 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import Array._\nsum1: Int \u003d 0\nsum2: Int \u003d 0\narray: Array[Int] \u003d Array(2, 3, 4, 3, 4, 5, 4, 5, 6)\nnewArr: Array[Array[Int]] \u003d Array(Array(2, 3, 4), Array(3, 4, 5), Array(4, 5, 6))\n\n\n\n\n\n\n\n\n\n\n\n\nSum1: 12, Sum2: 12\n"
+            "data": "value: Double \u003d 1.4142135623730951\n1.414\n1.4142\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511965431928_-819899719",
+      "id": "20171129-195351_722352806",
+      "dateCreated": "Nov 29, 2017 7:53:51 PM",
+      "dateStarted": "Nov 29, 2017 7:55:20 PM",
+      "dateFinished": "Nov 29, 2017 7:55:22 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "var sum1, sum2 \u003d 0\nvar array \u003d Array(Array(4,1,6), Array(22,4,11), Array(8,5,33))  \n\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        print(array(i)(j)+\" \")\n        if(i\u003d\u003dj){\n            sum1+\u003darray(i)(j)\n            }\n        }\n    println()\n}\nprintln(\"---------\")\nvar newArr \u003d array.transpose.reverse.transpose\n\n\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        print(newArr(i)(j)+\" \")\n        if(i\u003d\u003dj){\n            sum2+\u003dnewArr(i)(j)\n        }\n    }\n    println()\n}\n\n\nprintln(\"Sum1: \"+sum1+\", Sum2: \"+sum2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Nov 29, 2017 7:35:42 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "sum1: Int \u003d 0\nsum2: Int \u003d 0\narray: Array[Array[Int]] \u003d Array(Array(4, 1, 6), Array(22, 4, 11), Array(8, 5, 33))\n4 1 6 \n22 4 11 \n8 5 33 \n---------\nnewArr: Array[Array[Int]] \u003d Array(Array(6, 1, 4), Array(11, 4, 22), Array(33, 5, 8))\n6 1 4 \n11 4 22 \n33 5 8 \nSum1: 41, Sum2: 18\n"
           }
         ]
       },
@@ -704,8 +739,113 @@
       "jobName": "paragraph_1511862104498_-91254388",
       "id": "20171128-151144_1091389117",
       "dateCreated": "Nov 28, 2017 3:11:44 PM",
-      "dateStarted": "Nov 29, 2017 6:55:09 PM",
-      "dateFinished": "Nov 29, 2017 6:55:12 PM",
+      "dateStarted": "Nov 29, 2017 7:35:42 PM",
+      "dateFinished": "Nov 29, 2017 7:35:47 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "var array \u003d Array(Array(11,2,4), Array(4,5,6), Array(10,8,-12))  \n\nvar sum1, sum2 \u003d 0\n\nfor(i \u003c- 0 until 3){\n    for(j \u003c- 0 until 3){\n        if(i\u003d\u003dj){\n            sum1+\u003darray(i)(j)\n            }\n        }\n}\nvar newArr \u003d array.transpose.reverse.transpose\n\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        if(i\u003d\u003dj){\n            sum2+\u003dnewArr(i)(j)\n        }\n    }\n}\n\nmath.abs(sum1-sum2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Nov 29, 2017 7:45:44 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "array: Array[Array[Int]] \u003d Array(Array(11, 2, 4), Array(4, 5, 6), Array(10, 8, -12))\nsum1: Int \u003d 0\nsum2: Int \u003d 0\nnewArr: Array[Array[Int]] \u003d Array(Array(4, 2, 11), Array(6, 5, 4), Array(-12, 8, 10))\nres413: Int \u003d 15\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511941713476_652149270",
+      "id": "20171129-131833_590173422",
+      "dateCreated": "Nov 29, 2017 1:18:33 PM",
+      "dateStarted": "Nov 29, 2017 7:45:44 PM",
+      "dateFinished": "Nov 29, 2017 7:45:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "var array \u003d Array(-1,3,4,-2,-5-0,0,3,4)\n\n\ndef func(array:Array[Int]):Unit \u003d {\n    var denum \u003d array.length\n    var pos, neg, zero \u003d 0.0f\n    for(i \u003c- array){\n        if(i \u003e 0) pos+\u003d1\n        if(i \u003c 0) neg+\u003d1\n        if(i \u003d\u003d 0) zero+\u003d1\n    }\n    println(pos+\",\"+neg+\",\"+zero)\n    var frac_pos \u003d pos/denum \n    var frac_neg \u003d neg/denum\n    var frac_zero \u003d zero/denum\n    println(f\"$frac_pos%.5f\")\n    println(f\"$frac_neg%.5f\")\n    println(f\"$frac_zero%.5f\")\n}\n\nfunc(array)\n",
+      "user": "anonymous",
+      "dateUpdated": "Nov 29, 2017 8:04:00 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "array: Array[Int] \u003d Array(-1, 3, 4, -2, -5, 0, 3, 4)\nfunc: (array: Array[Int])Unit\n4.0,3.0,1.0\n0.50000\n0.37500\n0.12500\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511964499459_-1343061868",
+      "id": "20171129-193819_482327200",
+      "dateCreated": "Nov 29, 2017 7:38:19 PM",
+      "dateStarted": "Nov 29, 2017 8:04:00 PM",
+      "dateFinished": "Nov 29, 2017 8:04:03 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "var n \u003d 6\ndef func(n:Int):Unit\u003d{\n    for(i \u003c- 0 to n-1){\n        var lim \u003d n+1-i \n        for(j \u003c- 0 to lim){\n            print(\" \")\n        }\n        for(k \u003c- 0 to i){\n            print(\"#\")\n        }\n        println()\n    }\n}\nfunc(n)",
+      "user": "anonymous",
+      "dateUpdated": "Nov 29, 2017 8:25:48 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "n: Int \u003d 6\nfunc: (n: Int)Unit\n        #\n       ##\n      ###\n     ####\n    #####\n   ######\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511965224358_2051036921",
+      "id": "20171129-195024_1787191998",
+      "dateCreated": "Nov 29, 2017 7:50:24 PM",
+      "dateStarted": "Nov 29, 2017 8:25:48 PM",
+      "dateFinished": "Nov 29, 2017 8:25:50 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -717,9 +857,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1511941713476_652149270",
-      "id": "20171129-131833_590173422",
-      "dateCreated": "Nov 29, 2017 1:18:33 PM",
+      "jobName": "paragraph_1511966390699_478787639",
+      "id": "20171129-200950_717252950",
+      "dateCreated": "Nov 29, 2017 8:09:50 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
