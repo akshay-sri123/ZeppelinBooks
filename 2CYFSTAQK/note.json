@@ -3,7 +3,7 @@
     {
       "text": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\nval sparkSession: SparkSession \u003d SparkSession.builder.master(\"local\").getOrCreate()",
       "user": "anonymous",
-      "dateUpdated": "Nov 27, 2017 10:31:33 AM",
+      "dateUpdated": "Nov 29, 2017 12:17:51 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -22,7 +22,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\nsparkSession: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@7fd14a86\n"
+            "data": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\nsparkSession: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@3d161d5\n"
           }
         ]
       },
@@ -30,8 +30,8 @@
       "jobName": "paragraph_1511428339543_456047053",
       "id": "20171123-144219_573047957",
       "dateCreated": "Nov 23, 2017 2:42:19 PM",
-      "dateStarted": "Nov 27, 2017 10:32:17 AM",
-      "dateFinished": "Nov 27, 2017 10:32:31 AM",
+      "dateStarted": "Nov 29, 2017 12:17:52 PM",
+      "dateFinished": "Nov 29, 2017 12:18:11 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },

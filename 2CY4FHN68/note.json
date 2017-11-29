@@ -1,6 +1,41 @@
 {
   "paragraphs": [
     {
+      "text": "import Array._",
+      "user": "anonymous",
+      "dateUpdated": "Nov 29, 2017 6:30:04 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import Array._\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511941724469_-216228997",
+      "id": "20171129-131844_778682578",
+      "dateCreated": "Nov 29, 2017 1:18:44 PM",
+      "dateStarted": "Nov 29, 2017 6:30:04 PM",
+      "dateFinished": "Nov 29, 2017 6:30:05 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "text": "print(\"Hello World\")",
       "user": "anonymous",
       "dateUpdated": "Nov 16, 2017 1:20:48 PM",
@@ -368,9 +403,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "val array \u003d Array.ofDim[Int](3,3)\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        array(i)(j) \u003d i+j\n    }\n}\n\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        print(array(i)(j)+\" \")\n    }\n    println()\n}\nprintln()\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 2 to 0 by -1){\n        print(array(i)(j)+\" \")\n    }\n    println()\n}\n\n\n",
+      "text": "var sum1, sum2\u003d0\nvar array \u003d Array.ofDim[Int](3,3)\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        array(i)(j) \u003d i+j\n    }\n}\n\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        print(array(i)(j)+\" \")\n        sum1+\u003darray(i)(j)\n    }\n    println()\n}\nprintln()\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 2 to 0 by -1){\n        print(array(i)(j)+\" \")\n        sum2+\u003darray(i)(j)\n    }\n    println()\n}\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "Nov 28, 2017 10:55:12 AM",
+      "dateUpdated": "Nov 28, 2017 12:33:02 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -389,7 +424,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "array: Array[Array[Int]] \u003d Array(Array(0, 0, 0), Array(0, 0, 0), Array(0, 0, 0))\n0 1 2 \n1 2 3 \n2 3 4 \n\n2 1 0 \n3 2 1 \n4 3 2 \n"
+            "data": "sum1: Int \u003d 0\nsum2: Int \u003d 0\narray: Array[Array[Int]] \u003d Array(Array(0, 0, 0), Array(0, 0, 0), Array(0, 0, 0))\n0 1 2 \n1 2 3 \n2 3 4 \n\n2 1 0 \n3 2 1 \n4 3 2 \n"
           }
         ]
       },
@@ -397,8 +432,280 @@
       "jobName": "paragraph_1511774819332_832212746",
       "id": "20171127-145659_1361323117",
       "dateCreated": "Nov 27, 2017 2:56:59 PM",
-      "dateStarted": "Nov 28, 2017 10:55:12 AM",
-      "dateFinished": "Nov 28, 2017 10:55:14 AM",
+      "dateStarted": "Nov 28, 2017 12:33:02 PM",
+      "dateFinished": "Nov 28, 2017 12:33:03 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": " var a \u003d 0;\n      var b \u003d 0;\n      \n      // for loop execution with a range\n      for( a \u003c- 1 to 3; b \u003c- 1 to 3; c \u003c- 1 to 3){\n         print( \"Value of a: \" + a +\" \");\n         print( \"Value of b: \" + b +\" \");\n         print( \"Value of c: \" + c +\" \");\n         println()\n      }",
+      "user": "anonymous",
+      "dateUpdated": "Nov 28, 2017 12:38:49 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "a: Int \u003d 0\nb: Int \u003d 0\nValue of a: 1 Value of b: 1 Value of c: 1 \nValue of a: 1 Value of b: 1 Value of c: 2 \nValue of a: 1 Value of b: 1 Value of c: 3 \nValue of a: 1 Value of b: 2 Value of c: 1 \nValue of a: 1 Value of b: 2 Value of c: 2 \nValue of a: 1 Value of b: 2 Value of c: 3 \nValue of a: 1 Value of b: 3 Value of c: 1 \nValue of a: 1 Value of b: 3 Value of c: 2 \nValue of a: 1 Value of b: 3 Value of c: 3 \nValue of a: 2 Value of b: 1 Value of c: 1 \nValue of a: 2 Value of b: 1 Value of c: 2 \nValue of a: 2 Value of b: 1 Value of c: 3 \nValue of a: 2 Value of b: 2 Value of c: 1 \nValue of a: 2 Value of b: 2 Value of c: 2 \nValue of a: 2 Value of b: 2 Value of c: 3 \nValue of a: 2 Value of b: 3 Value of c: 1 \nValue of a: 2 Value of b: 3 Value of c: 2 \nValue of a: 2 Value of b: 3 Value of c: 3 \nValue of a: 3 Value of b: 1 Value of c: 1 \nValue of a: 3 Value of b: 1 Value of c: 2 \nValue of a: 3 Value of b: 1 Value of c: 3 \nValue of a: 3 Value of b: 2 Value of c: 1 \nValue of a: 3 Value of b: 2 Value of c: 2 \nValue of a: 3 Value of b: 2 Value of c: 3 \nValue of a: 3 Value of b: 3 Value of c: 1 \nValue of a: 3 Value of b: 3 Value of c: 2 \nValue of a: 3 Value of b: 3 Value of c: 3 \n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511845409080_-484170108",
+      "id": "20171128-103329_656349368",
+      "dateCreated": "Nov 28, 2017 10:33:29 AM",
+      "dateStarted": "Nov 28, 2017 12:38:49 PM",
+      "dateFinished": "Nov 28, 2017 12:38:50 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "var sum1, sum2\u003d0\nvar array \u003d Array.ofDim[Int](3,3)\n\nfor(i \u003c- 0 to 2; j \u003c- 0 to 2){\n    array(i)(j) \u003d i+j\n}\n\nfor(i \u003c- 0 to 2; j \u003c- 0 to 2){\n   print(array(i)(j) +\"\\n\")\n}",
+      "user": "anonymous",
+      "dateUpdated": "Nov 28, 2017 12:41:33 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1511852880483_-330226818",
+      "id": "20171128-123800_1204831772",
+      "dateCreated": "Nov 28, 2017 12:38:00 PM",
+      "dateStarted": "Nov 28, 2017 12:41:16 PM",
+      "dateFinished": "Nov 28, 2017 12:41:17 PM",
+      "status": "FINISHED",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "for(i \u003c- 1 until 10 if i%2 \u003d\u003d 0){\n    print(i+\" \")\n}",
+      "user": "anonymous",
+      "dateUpdated": "Nov 28, 2017 12:50:59 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "2 4 6 8 "
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511853055815_483779262",
+      "id": "20171128-124055_1140056706",
+      "dateCreated": "Nov 28, 2017 12:40:55 PM",
+      "dateStarted": "Nov 28, 2017 12:50:59 PM",
+      "dateFinished": "Nov 28, 2017 12:50:59 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "var a \u003d 0;\nval numList \u003d List(1,2,3,4,5,6,7,8,9,10);\n\n// for loop execution with a yield\nvar retVal \u003d for{ a \u003c- numList if a !\u003d 3; if a \u003c 8 }yield a\n\n// Now print returned values using another loop.\nfor( a \u003c- retVal){\n println( \"Value of a: \" + a );\n}",
+      "user": "anonymous",
+      "dateUpdated": "Nov 28, 2017 12:52:34 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "a: Int \u003d 0\nnumList: List[Int] \u003d List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)\nretVal: List[Int] \u003d List(1, 2, 4, 5, 6, 7)\nValue of a: 1\nValue of a: 2\nValue of a: 4\nValue of a: 5\nValue of a: 6\nValue of a: 7\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511853137458_1171415847",
+      "id": "20171128-124217_874098960",
+      "dateCreated": "Nov 28, 2017 12:42:17 PM",
+      "dateStarted": "Nov 28, 2017 12:52:27 PM",
+      "dateFinished": "Nov 28, 2017 12:52:28 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import scala.util.control._\n\nvar a \u003d 0;\nvar b \u003d 0;\nval numList1 \u003d List(1,2,3,4,5);\nval numList2 \u003d List(11,12,13);\n\nval outer \u003d new Breaks;\nval inner \u003d new Breaks;\n\nouter.breakable {\n for( a \u003c- numList1){\n    println( \"Value of a: \" + a );\n    \n    inner.breakable {\n       for( b \u003c- numList2){\n          println( \"Value of b: \" + b );\n          \n          if( b \u003d\u003d 12 ){\n             inner.break;\n          }\n       }\n    } // inner breakable\n }\n} ",
+      "user": "anonymous",
+      "dateUpdated": "Nov 28, 2017 1:08:46 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import scala.util.control._\na: Int \u003d 0\nb: Int \u003d 0\nnumList1: List[Int] \u003d List(1, 2, 3, 4, 5)\nnumList2: List[Int] \u003d List(11, 12, 13)\nouter: scala.util.control.Breaks \u003d scala.util.control.Breaks@3cbd36b2\ninner: scala.util.control.Breaks \u003d scala.util.control.Breaks@10e7b4b\nValue of a: 1\nValue of b: 11\nValue of b: 12\nValue of a: 2\nValue of b: 11\nValue of b: 12\nValue of a: 3\nValue of b: 11\nValue of b: 12\nValue of a: 4\nValue of b: 11\nValue of b: 12\nValue of a: 5\nValue of b: 11\nValue of b: 12\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511853747027_-624130126",
+      "id": "20171128-125227_30033710",
+      "dateCreated": "Nov 28, 2017 12:52:27 PM",
+      "dateStarted": "Nov 28, 2017 1:08:46 PM",
+      "dateFinished": "Nov 28, 2017 1:08:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "var inc \u003d (x:Int) \u003d\u003e x+1\nvar x \u003d inc(7) - 1",
+      "user": "anonymous",
+      "dateUpdated": "Nov 28, 2017 1:31:21 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "inc: Int \u003d\u003e Int \u003d \u003cfunction1\u003e\nx: Int \u003d 7\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511854705693_231711248",
+      "id": "20171128-130825_15661478",
+      "dateCreated": "Nov 28, 2017 1:08:25 PM",
+      "dateStarted": "Nov 28, 2017 1:31:21 PM",
+      "dateFinished": "Nov 28, 2017 1:31:22 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val height \u003d 1.9d\nval name \u003d \"James\"\nprintln(f\"$name%s is $height%2.2f meters tall\") //James is 1.90 meters tall",
+      "user": "anonymous",
+      "dateUpdated": "Nov 29, 2017 6:39:47 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "height: Double \u003d 1.9\nname: String \u003d James\nJames is 1.90 meters tall\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511856081487_-1366185992",
+      "id": "20171128-133121_411698891",
+      "dateCreated": "Nov 28, 2017 1:31:21 PM",
+      "dateStarted": "Nov 29, 2017 6:39:47 PM",
+      "dateFinished": "Nov 29, 2017 6:39:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import Array._\n\nvar sum1, sum2 \u003d 0\nvar array \u003d (for {\n    r \u003c- 0 until 3\n    c \u003c- 2 until 5\n} yield r+c).toArray\n\nvar newArr \u003d array.grouped(3).toArray\n\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 0 to 2){\n        if(i\u003d\u003dj){\n            sum1+\u003dnewArr(i)(j)\n        }\n    }\n    println()\n}\n\nfor(i \u003c- 0 to 2){\n    for(j \u003c- 2 to 0 by -1){\n        if(i \u003d\u003d j){\n        sum2+\u003dnewArr(i)(j)\n        }\n    println()\n    }\n}\n\nprintln(\"Sum1: \"+sum1+\", Sum2: \"+sum2)\n",
+      "user": "anonymous",
+      "dateUpdated": "Nov 29, 2017 6:55:09 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import Array._\nsum1: Int \u003d 0\nsum2: Int \u003d 0\narray: Array[Int] \u003d Array(2, 3, 4, 3, 4, 5, 4, 5, 6)\nnewArr: Array[Array[Int]] \u003d Array(Array(2, 3, 4), Array(3, 4, 5), Array(4, 5, 6))\n\n\n\n\n\n\n\n\n\n\n\n\nSum1: 12, Sum2: 12\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511862104498_-91254388",
+      "id": "20171128-151144_1091389117",
+      "dateCreated": "Nov 28, 2017 3:11:44 PM",
+      "dateStarted": "Nov 29, 2017 6:55:09 PM",
+      "dateFinished": "Nov 29, 2017 6:55:12 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -410,9 +717,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1511845409080_-484170108",
-      "id": "20171128-103329_656349368",
-      "dateCreated": "Nov 28, 2017 10:33:29 AM",
+      "jobName": "paragraph_1511941713476_652149270",
+      "id": "20171129-131833_590173422",
+      "dateCreated": "Nov 29, 2017 1:18:33 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }

@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}",
+      "text": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\nval sparkSession: SparkSession \u003d SparkSession.builder.master(\"local\").appName(\"Test\").getOrCreate()\n",
       "user": "anonymous",
-      "dateUpdated": "Nov 28, 2017 10:33:44 AM",
+      "dateUpdated": "Nov 29, 2017 6:07:00 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -23,7 +23,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\n"
+            "data": "import org.apache.spark.sql.functions._\nimport org.apache.spark.sql.{Dataset, Row, SaveMode, SparkSession}\nsparkSession: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@a75b794\n"
           }
         ]
       },
@@ -31,15 +31,15 @@
       "jobName": "paragraph_1510229147552_1944597616",
       "id": "20171109-173547_1642768650",
       "dateCreated": "Nov 9, 2017 5:35:47 PM",
-      "dateStarted": "Nov 28, 2017 10:33:48 AM",
-      "dateFinished": "Nov 28, 2017 10:33:50 AM",
+      "dateStarted": "Nov 29, 2017 6:07:00 PM",
+      "dateFinished": "Nov 29, 2017 6:07:01 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "val sparkSession: SparkSession \u003d SparkSession.builder.master(\"local\").appName(\"Test\").getOrCreate()\nimport sparkSession.implicits._     \nval data \u003d sparkSession.read.text(\"/home/zimetrics/Documents/kinglear.txt\").as[String]\nval words \u003d data.flatMap(value \u003d\u003e value.split(\"\\\\s+\"))\nval groupedWords \u003d words.groupByKey(_.toLowerCase)\nval counts \u003d groupedWords.count()\ncounts.show()",
       "user": "anonymous",
-      "dateUpdated": "Nov 28, 2017 10:33:49 AM",
+      "dateUpdated": "Nov 29, 2017 4:17:19 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -59,7 +59,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "sparkSession: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@1107a762\nimport sparkSession.implicits._\ndata: org.apache.spark.sql.Dataset[String] \u003d [value: string]\nwords: org.apache.spark.sql.Dataset[String] \u003d [value: string]\ngroupedWords: org.apache.spark.sql.KeyValueGroupedDataset[String,String] \u003d org.apache.spark.sql.KeyValueGroupedDataset@4bc635fe\ncounts: org.apache.spark.sql.Dataset[(String, Long)] \u003d [value: string, count(1): bigint]\n+------------+--------+\n|       value|count(1)|\n+------------+--------+\n|        earl|       8|\n|(messenger:)|       1|\n|        some|      38|\n|       those|      13|\n|       still|      11|\n|     [giving|       4|\n|        eye.|       2|\n|       wife.|       2|\n|         art|      38|\n|        hope|       2|\n|        sol,|       1|\n|       come;|       3|\n|      lady\u0027s|       3|\n|      thwart|       1|\n|      waters|       1|\n|  encounter,|       1|\n|      spared|       1|\n|    wagtail?|       1|\n|     nature:|       1|\n| hot-blooded|       1|\n+------------+--------+\nonly showing top 20 rows\n\n"
+            "data": "sparkSession: org.apache.spark.sql.SparkSession \u003d org.apache.spark.sql.SparkSession@339ee506\nimport sparkSession.implicits._\ndata: org.apache.spark.sql.Dataset[String] \u003d [value: string]\nwords: org.apache.spark.sql.Dataset[String] \u003d [value: string]\ngroupedWords: org.apache.spark.sql.KeyValueGroupedDataset[String,String] \u003d org.apache.spark.sql.KeyValueGroupedDataset@106543ee\ncounts: org.apache.spark.sql.Dataset[(String, Long)] \u003d [value: string, count(1): bigint]\n+------------+--------+\n|       value|count(1)|\n+------------+--------+\n|        earl|       8|\n|(messenger:)|       1|\n|        some|      38|\n|       those|      13|\n|       still|      11|\n|     [giving|       4|\n|        eye.|       2|\n|       wife.|       2|\n|         art|      38|\n|        hope|       2|\n|        sol,|       1|\n|       come;|       3|\n|      lady\u0027s|       3|\n|      thwart|       1|\n|      waters|       1|\n|  encounter,|       1|\n|      spared|       1|\n|    wagtail?|       1|\n|     nature:|       1|\n| hot-blooded|       1|\n+------------+--------+\nonly showing top 20 rows\n\n"
           }
         ]
       },
@@ -67,8 +67,8 @@
       "jobName": "paragraph_1510125702078_-869880889",
       "id": "20171108-125142_1218110582",
       "dateCreated": "Nov 8, 2017 12:51:42 PM",
-      "dateStarted": "Nov 28, 2017 10:33:49 AM",
-      "dateFinished": "Nov 28, 2017 10:33:59 AM",
+      "dateStarted": "Nov 29, 2017 4:17:19 PM",
+      "dateFinished": "Nov 29, 2017 4:17:23 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -3400,7 +3400,7 @@
     {
       "text": "val geoDF \u003d sparkSession.read\n      .format(\"jdbc\")\n      .option(\"url\", \"jdbc:mysql://brandcdn-dev.cgy3zqnvq7mi.us-west-1.rds.amazonaws.com:3306/brandcdn_dev_weekly\")\n      .option(\"dbtable\", \"brandcdn_dev_monthly.geo_polygons\")\n      .option(\"user\", \"frequence_admin\")\n      .option(\"password\", \"DrPF#9sJ6ZkTn\")\n      .option(\"driver\", \"com.mysql.jdbc.Driver\")\n      .load()",
       "user": "anonymous",
-      "dateUpdated": "Nov 27, 2017 4:44:48 PM",
+      "dateUpdated": "Nov 29, 2017 6:07:24 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -3427,15 +3427,15 @@
       "jobName": "paragraph_1511775811075_2046686067",
       "id": "20171127-151331_1937695166",
       "dateCreated": "Nov 27, 2017 3:13:31 PM",
-      "dateStarted": "Nov 27, 2017 4:44:48 PM",
-      "dateFinished": "Nov 27, 2017 4:44:50 PM",
+      "dateStarted": "Nov 29, 2017 6:07:25 PM",
+      "dateFinished": "Nov 29, 2017 6:07:29 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "geoDF.printSchema",
       "user": "anonymous",
-      "dateUpdated": "Nov 27, 2017 4:44:55 PM",
+      "dateUpdated": "Nov 29, 2017 6:07:30 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -3462,15 +3462,15 @@
       "jobName": "paragraph_1511781124209_-510261836",
       "id": "20171127-164204_299511810",
       "dateCreated": "Nov 27, 2017 4:42:04 PM",
-      "dateStarted": "Nov 27, 2017 4:44:55 PM",
-      "dateFinished": "Nov 27, 2017 4:44:55 PM",
+      "dateStarted": "Nov 29, 2017 6:07:31 PM",
+      "dateFinished": "Nov 29, 2017 6:07:31 PM",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "geoDF.select(\"geojson_blob\").show(5)",
       "user": "anonymous",
-      "dateUpdated": "Nov 27, 2017 4:52:42 PM",
+      "dateUpdated": "Nov 29, 2017 6:07:36 PM",
       "config": {
         "colWidth": 12.0,
         "enabled": true,
@@ -3490,7 +3490,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "org.apache.spark.SparkException: Job 45 cancelled part of cancelled job group zeppelin-20171127-164213_1886255021\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1435)\n  at org.apache.spark.scheduler.DAGScheduler.handleJobCancellation(DAGScheduler.scala:1375)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply$mcVI$sp(DAGScheduler.scala:788)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply(DAGScheduler.scala:788)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply(DAGScheduler.scala:788)\n  at scala.collection.mutable.HashSet.foreach(HashSet.scala:78)\n  at org.apache.spark.scheduler.DAGScheduler.handleJobGroupCancelled(DAGScheduler.scala:788)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1625)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1605)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1594)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:628)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1918)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1931)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1944)\n  at org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:333)\n  at org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:38)\n  at org.apache.spark.sql.Dataset$$anonfun$org$apache$spark$sql$Dataset$$execute$1$1.apply(Dataset.scala:2371)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:57)\n  at org.apache.spark.sql.Dataset.withNewExecutionId(Dataset.scala:2765)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$execute$1(Dataset.scala:2370)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collect(Dataset.scala:2377)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2113)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2112)\n  at org.apache.spark.sql.Dataset.withTypedCallback(Dataset.scala:2795)\n  at org.apache.spark.sql.Dataset.head(Dataset.scala:2112)\n  at org.apache.spark.sql.Dataset.take(Dataset.scala:2327)\n  at org.apache.spark.sql.Dataset.showString(Dataset.scala:248)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:636)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:595)\n  ... 61 elided\n"
+            "data": "org.apache.spark.SparkException: Job 0 cancelled part of cancelled job group zeppelin-20171127-164213_1886255021\n  at org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1435)\n  at org.apache.spark.scheduler.DAGScheduler.handleJobCancellation(DAGScheduler.scala:1375)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply$mcVI$sp(DAGScheduler.scala:788)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply(DAGScheduler.scala:788)\n  at org.apache.spark.scheduler.DAGScheduler$$anonfun$handleJobGroupCancelled$1.apply(DAGScheduler.scala:788)\n  at scala.collection.mutable.HashSet.foreach(HashSet.scala:78)\n  at org.apache.spark.scheduler.DAGScheduler.handleJobGroupCancelled(DAGScheduler.scala:788)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1625)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1605)\n  at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1594)\n  at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n  at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:628)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1918)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1931)\n  at org.apache.spark.SparkContext.runJob(SparkContext.scala:1944)\n  at org.apache.spark.sql.execution.SparkPlan.executeTake(SparkPlan.scala:333)\n  at org.apache.spark.sql.execution.CollectLimitExec.executeCollect(limit.scala:38)\n  at org.apache.spark.sql.Dataset$$anonfun$org$apache$spark$sql$Dataset$$execute$1$1.apply(Dataset.scala:2371)\n  at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:57)\n  at org.apache.spark.sql.Dataset.withNewExecutionId(Dataset.scala:2765)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$execute$1(Dataset.scala:2370)\n  at org.apache.spark.sql.Dataset.org$apache$spark$sql$Dataset$$collect(Dataset.scala:2377)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2113)\n  at org.apache.spark.sql.Dataset$$anonfun$head$1.apply(Dataset.scala:2112)\n  at org.apache.spark.sql.Dataset.withTypedCallback(Dataset.scala:2795)\n  at org.apache.spark.sql.Dataset.head(Dataset.scala:2112)\n  at org.apache.spark.sql.Dataset.take(Dataset.scala:2327)\n  at org.apache.spark.sql.Dataset.showString(Dataset.scala:248)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:636)\n  at org.apache.spark.sql.Dataset.show(Dataset.scala:595)\n  ... 50 elided\n"
           }
         ]
       },
@@ -3498,9 +3498,100 @@
       "jobName": "paragraph_1511781133569_368135227",
       "id": "20171127-164213_1886255021",
       "dateCreated": "Nov 27, 2017 4:42:13 PM",
-      "dateStarted": "Nov 27, 2017 4:50:54 PM",
-      "dateFinished": "Nov 27, 2017 4:52:37 PM",
+      "dateStarted": "Nov 29, 2017 6:07:36 PM",
+      "dateFinished": "Nov 29, 2017 6:10:29 PM",
       "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "geoDF.write.mode(SaveMode.Overwrite).parquet(\"/home/zimetrics/Frequence/FrequenceTests/GeoData\")",
+      "user": "anonymous",
+      "dateUpdated": "Nov 29, 2017 12:30:10 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": "org.apache.thrift.transport.TTransportException",
+      "apps": [],
+      "jobName": "paragraph_1511781192958_-625393702",
+      "id": "20171127-164312_1103017247",
+      "dateCreated": "Nov 27, 2017 4:43:12 PM",
+      "dateStarted": "Nov 29, 2017 12:30:10 PM",
+      "dateFinished": "Nov 29, 2017 12:42:17 PM",
+      "status": "ERROR",
+      "errorMessage": "org.apache.thrift.transport.TTransportException\n\tat org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:132)\n\tat org.apache.thrift.transport.TTransport.readAll(TTransport.java:86)\n\tat org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:429)\n\tat org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:318)\n\tat org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:219)\n\tat org.apache.thrift.TServiceClient.receiveBase(TServiceClient.java:69)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Client.recv_interpret(RemoteInterpreterService.java:266)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Client.interpret(RemoteInterpreterService.java:250)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.interpret(RemoteInterpreter.java:373)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:97)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:406)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:175)\n\tat org.apache.zeppelin.scheduler.RemoteScheduler$JobRunner.run(RemoteScheduler.java:329)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val weeklyData \u003d sparkSession.read\n      .format(\"jdbc\")\n      .option(\"url\", \"jdbc:mysql://brandcdn-dev.cgy3zqnvq7mi.us-west-1.rds.amazonaws.com:3306/brandcdn_dev_weekly\")\n      .option(\"dbtable\", \"brandcdn_dev_weekly.report_ad_size_records\")\n      .option(\"user\", \"frequence_admin\")\n      .option(\"password\", \"DrPF#9sJ6ZkTn\")\n      .option(\"driver\", \"com.mysql.jdbc.Driver\")\n      .load()\n      .filter(\"date \u003d \u00272017-08-01\u0027\")",
+      "user": "anonymous",
+      "dateUpdated": "Nov 29, 2017 3:38:15 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "weeklyData: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [AdGroupID: string, Size: string ... 4 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1511938810481_-678833972",
+      "id": "20171129-123010_1346199732",
+      "dateCreated": "Nov 29, 2017 12:30:10 PM",
+      "dateStarted": "Nov 29, 2017 3:38:16 PM",
+      "dateFinished": "Nov 29, 2017 3:38:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "weeklyData.count()",
+      "user": "anonymous",
+      "dateUpdated": "Nov 29, 2017 3:41:10 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala"
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": "org.apache.thrift.transport.TTransportException",
+      "apps": [],
+      "jobName": "paragraph_1511949963971_-776183445",
+      "id": "20171129-153603_285940197",
+      "dateCreated": "Nov 29, 2017 3:36:03 PM",
+      "dateStarted": "Nov 29, 2017 3:41:10 PM",
+      "dateFinished": "Nov 29, 2017 3:46:10 PM",
+      "status": "ERROR",
+      "errorMessage": "org.apache.thrift.transport.TTransportException\n\tat org.apache.thrift.transport.TIOStreamTransport.read(TIOStreamTransport.java:132)\n\tat org.apache.thrift.transport.TTransport.readAll(TTransport.java:86)\n\tat org.apache.thrift.protocol.TBinaryProtocol.readAll(TBinaryProtocol.java:429)\n\tat org.apache.thrift.protocol.TBinaryProtocol.readI32(TBinaryProtocol.java:318)\n\tat org.apache.thrift.protocol.TBinaryProtocol.readMessageBegin(TBinaryProtocol.java:219)\n\tat org.apache.thrift.TServiceClient.receiveBase(TServiceClient.java:69)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Client.recv_interpret(RemoteInterpreterService.java:266)\n\tat org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Client.interpret(RemoteInterpreterService.java:250)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreter.interpret(RemoteInterpreter.java:373)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.interpret(LazyOpenInterpreter.java:97)\n\tat org.apache.zeppelin.notebook.Paragraph.jobRun(Paragraph.java:406)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:175)\n\tat org.apache.zeppelin.scheduler.RemoteScheduler$JobRunner.run(RemoteScheduler.java:329)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -3511,9 +3602,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1511781192958_-625393702",
-      "id": "20171127-164312_1103017247",
-      "dateCreated": "Nov 27, 2017 4:43:12 PM",
+      "jobName": "paragraph_1511950122863_1969631537",
+      "id": "20171129-153842_84655349",
+      "dateCreated": "Nov 29, 2017 3:38:42 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
